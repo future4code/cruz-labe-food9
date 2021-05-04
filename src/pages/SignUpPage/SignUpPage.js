@@ -6,6 +6,7 @@ import logo_future_eat from "../../assets/images/logo_future_eat.png"
 import {ButtonBack} from './styled'
 
 
+
 const SignUpPage = () => {
 
   return (
@@ -17,11 +18,14 @@ const SignUpPage = () => {
         </Box>
         <hr/>
         <VStack>
+
+
         <Box>
             <Image mt='24px' src={logo_future_eat} w='104px' h='58px' />
         </Box>
         <Text p='8px' fontSize='16px' >Cadastrar</Text>
         <FormSignUp />
+
         </VStack>
       
       </Box>

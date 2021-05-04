@@ -4,12 +4,17 @@ import useForm from '../../hooks/useForm'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/urls'
 import useRequestData from '../../hooks/useRequestData'
+import { useProtectedPage } from '../../hooks/useProtectedPage'
+import { goToHomePage } from '../../routes/coordinator'
+import { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 
 const AdressPageForm = () => {
+    useProtectedPage();
 
-    const getAdress = useRequestData({},`${BASE_URL}/profile/address`);
-
-
+    const history = useHistory();
+    const [adress,getAdress] = useRequestData({},`${BASE_URL}/profile/address`)
+    
     const initiaState = {
         "street": "",
         "number": "",
@@ -17,7 +22,6 @@ const AdressPageForm = () => {
         "city": "",
         "state": "",
         "complement": ""
-
     }
 
 
@@ -25,23 +29,30 @@ const AdressPageForm = () => {
         try{
             const response = await axios.put(`${BASE_URL}/address`,form,{
                 headers:{
-                    auth :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5DM1lKZk1DY2Rsc0NFTWF6dmZXIiwibmFtZSI6IkVkaW1hciBzYW50b3MiLCJlbWFpbCI6ImVkaW5ob0BmdXR1cmU0LmNvbSIsImNwZiI6IjY5Ni45OTMuMjM0LTkxIiwiaGFzQWRkcmVzcyI6ZmFsc2UsImlhdCI6MTYyMDE0NDExOX0.rqkfGVo7Hya9ssPLcQNBuqCY6exJcDWyACl_PS7_iVk"
+                    auth : localStorage.setItem("token")
                 }
             });
-            // localStorage.setItem("token",response.data.token);
-            console.log("token",response.data.token);
-            console.log("usuario",response.data.user);
+            localStorage.getItem("token",response.data.token);
+            history.push("/home")
         }catch(erro){
             console.log("Erro",erro);
         }
     }
 
-    const [form,handleInputChange] = useForm(initiaState)
+  
+
+    const [form,handleInputChange,clear,setFormData] = useForm(adress)
 
     const onsubmitForm = (e) => {
         e.preventDefault();
         updateAdress();
     }
+
+    
+    useEffect(()=>{
+        setFormData(adress.address)
+    },[adress])
+
 
     return (
         <>
@@ -54,8 +65,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"street"}
-                // value={(getAdress.address ? getAdress.address.street: form.street)}
-                value={form.street}
+                value={form && form.street}
                 onChange={handleInputChange}
             />
             <TextField
@@ -66,8 +76,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"number"}
-                // value={(getAdress.address ? getAdress.address.number: form.number)}
-                value={form.number}
+                value={form && form.number}
                 onChange={handleInputChange}
             />
             <TextField
@@ -77,8 +86,7 @@ const AdressPageForm = () => {
                 margin={'normal'}
                 fullWidth
                 name={"complement"}
-                // value={(getAdress.address ? getAdress.address.complement: form.complement)}
-                value={form.complement}
+                value={form && form.complement}
                 onChange={handleInputChange}
             />
             <TextField
@@ -89,8 +97,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"neighbourhood"}
-                // value={(getAdress.address ? getAdress.address.neighbourhood: form.neighbourhood)}
-                value={form.neighbourhood}
+                value={form && form.neighbourhood}
                 onChange={handleInputChange}
             />
             <TextField
@@ -101,8 +108,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"city"}
-                // value={(getAdress.address ? getAdress.address.city: form.city)}
-                value={form.city}
+                value={form && form.city}
                 onChange={handleInputChange}
             />
             <TextField
@@ -113,19 +119,18 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"state"}
-                // value={(getAdress.address ? getAdress.address.state: form.state)}
-                value={form.state}
+                value={form && form.state}
                 onChange={handleInputChange}
             />
             <Button
                 type={"submit"}
                 fullWidth
                 variant={"contained"}
-                color={"primary"}
-            >Enviar</Button>
+                color={"primary"}>
+                    Enviar
+            </Button>
         </Form>
         
-        {getAdress && getAdress.address && getAdress.address.street}
         </>
     )
 }
