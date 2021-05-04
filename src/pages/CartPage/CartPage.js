@@ -1,7 +1,14 @@
-import React from 'react';
+import React from 'react'
+import Footer from '../../components/Footer'
+
 
 const CartPage = () => {
-  return <p>CartPage</p>;
-};
+    return(
+        <div>
+        <p>CartPage</p>
+        <Footer/>
+        </div>
+    )
+}
 
-export default CartPage;
+export default CartPage
