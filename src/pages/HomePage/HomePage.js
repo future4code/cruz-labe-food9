@@ -1,3 +1,13 @@
+import React from 'react'
+import { useProtectedPage } from '../../hooks/useProtectedPage';
+
+const HomePage = () => {
+    useProtectedPage();
+    return(
+        <p>HomePage</p>
+    )
+}
+
 import React from 'react';
 import {
   StyledToolBar,
@@ -43,5 +53,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;

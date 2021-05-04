@@ -19,6 +19,7 @@ const useRequestData = (initialData,url) =>{
         }
     }
 
+    console.log(data);
     useEffect(()=>{
         getData();
     },[])
