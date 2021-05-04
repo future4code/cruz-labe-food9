@@ -6,6 +6,7 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import RestaurantDetailPage from '../pages/RestaurantDetailPage/RestaurantDetailPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
+import AdressPage from '../pages/AdressPage/AdressPage'
 
 const Router = () => {
   return (
@@ -16,6 +17,9 @@ const Router = () => {
         </Route>
         <Route exact path="/signup">
           <SignUpPage />
+        </Route>
+        <Route exact path="/adress">
+          <AdressPage />
         </Route>
         <Route exact path="/">
           <HomePage />
