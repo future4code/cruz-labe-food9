@@ -1,17 +1,32 @@
 import React from 'react'
-import { Center, Button } from '@chakra-ui/react'
+import { Center, Button, useToast } from '@chakra-ui/react'
 import TextField from '@material-ui/core/TextField';
 import { Form } from './styled'
-import {PhoneIcon} from '@chakra-ui/react'
+import useForm from '../../hooks/useForm';
+import { signUp } from './signUp';
+import {useHistory} from 'react-router-dom'
 
 
-const FormSign = () => {
+const FormSignUp = () => {
+    const [form, onChange, clear] = useForm({name: '', email: '', cpf: '', password: '', confirmPassword: ''})
+
+    const toast = useToast()
+    const history = useHistory()
+
+    const onSubmitForm = (event) => {
+        event.preventDefault()
+        signUp(form, clear, toast, history)
+    }
+    
 
 
     return(
-            <Form >
+            <Form onSubmit={onSubmitForm}>
                 <Center>
                     <TextField
+                    name={'name'}
+                    value={form.name}
+                    onChange={onChange}
                     autoFocus
                     required
                     fullWidth
@@ -27,6 +42,9 @@ const FormSign = () => {
                 </Center>
                 <Center>
                     <TextField
+                    name={'email'}
+                    value={form.email}
+                    onChange={onChange}
                     size="normal"
                     required
                     fullWidth
@@ -43,6 +61,9 @@ const FormSign = () => {
                 </Center>
                 <Center>
                     <TextField
+                    name={'cpf'}
+                    value={form.cpf}
+                    onChange={onChange}
                     size="normal"
                     required
                     fullWidth
@@ -59,6 +80,10 @@ const FormSign = () => {
                 </Center>
                 <Center>
                     <TextField
+                    name={'password'}
+                    value={form.password}
+                    onChange={onChange}
+                    type='password'
                     size="normal"
                     required
                     fullWidth
@@ -75,7 +100,10 @@ const FormSign = () => {
                 </Center>
                 <Center>
                     <TextField
-                    icon={<PhoneIcon color="gray.300" />}
+                    name={'confirmPassword'}
+                    value={form.confirmPassword}
+                    onChange={onChange}
+                    type='password'
                     size="normal"
                     required
                     fullWidth
@@ -91,10 +119,10 @@ const FormSign = () => {
                     />                
                 </Center>
                 <Center>
-                    <Button _hover={{ bg: "brand.100" }} mt='12px' w='328px' bg='brand.100'>Criar</Button>
+                    <Button type='submit' _hover={{ bg: "brand.100" }} mt='12px' w='328px' bg='brand.100'>Criar</Button>
                 </Center>
             </Form>
     )
 }
 
-export default FormSign
+export default FormSignUp
