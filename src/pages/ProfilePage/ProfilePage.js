@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Footer from '../../components/Footer';
 
 const ProfilePage = () => {
-    return(
-        <p>ProfilePage</p>
-    )
-}
+  return (
+    <div>
+      <p>ProfilePage</p>
+      <Footer />
+    </div>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
