@@ -3,7 +3,12 @@ import { Form } from './style'
 import useForm from '../../hooks/useForm'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/urls'
+import useRequestData from '../../hooks/useRequestData'
+
 const AdressPageForm = () => {
+
+    const getAdress = useRequestData({},`${BASE_URL}/profile/address`);
+
 
     const initiaState = {
         "street": "",
@@ -15,11 +20,12 @@ const AdressPageForm = () => {
 
     }
 
+
     const updateAdress = async() =>{
         try{
             const response = await axios.put(`${BASE_URL}/address`,form,{
                 headers:{
-                    auth :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlhhZlhFVXY5Rmk0SEJycDcyeHVxIiwibmFtZSI6IkdhYnJpZWwgTWluYSBTaWx2YSIsImVtYWlsIjoiZ2FicmllbE1pbmFAZnV0dXJlNC5jb20iLCJjcGYiOiI2OTYuMjQzLjAwNC05MSIsImhhc0FkZHJlc3MiOnRydWUsImFkZHJlc3MiOiJSLiBkYXMgYWNlcm9sYXMsIDkyLCBDb25kb21pbmlvIFRlcnJhIHNhbnRhIC0gQmFpcnJvIGRvIGdyYW1hIiwiaWF0IjoxNjIwMTM2NjcxfQ.uSVfJbbWiPizZuBtbjIkrGfF5eNfZPlSzQh4ylRee0Q"
+                    auth :"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5DM1lKZk1DY2Rsc0NFTWF6dmZXIiwibmFtZSI6IkVkaW1hciBzYW50b3MiLCJlbWFpbCI6ImVkaW5ob0BmdXR1cmU0LmNvbSIsImNwZiI6IjY5Ni45OTMuMjM0LTkxIiwiaGFzQWRkcmVzcyI6ZmFsc2UsImlhdCI6MTYyMDE0NDExOX0.rqkfGVo7Hya9ssPLcQNBuqCY6exJcDWyACl_PS7_iVk"
                 }
             });
             // localStorage.setItem("token",response.data.token);
@@ -38,6 +44,7 @@ const AdressPageForm = () => {
     }
 
     return (
+        <>
         <Form onSubmit={onsubmitForm}>
             <TextField
                 type={"text"}
@@ -47,6 +54,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"street"}
+                // value={(getAdress.address ? getAdress.address.street: form.street)}
                 value={form.street}
                 onChange={handleInputChange}
             />
@@ -58,6 +66,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"number"}
+                // value={(getAdress.address ? getAdress.address.number: form.number)}
                 value={form.number}
                 onChange={handleInputChange}
             />
@@ -68,6 +77,7 @@ const AdressPageForm = () => {
                 margin={'normal'}
                 fullWidth
                 name={"complement"}
+                // value={(getAdress.address ? getAdress.address.complement: form.complement)}
                 value={form.complement}
                 onChange={handleInputChange}
             />
@@ -79,6 +89,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"neighbourhood"}
+                // value={(getAdress.address ? getAdress.address.neighbourhood: form.neighbourhood)}
                 value={form.neighbourhood}
                 onChange={handleInputChange}
             />
@@ -90,6 +101,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"city"}
+                // value={(getAdress.address ? getAdress.address.city: form.city)}
                 value={form.city}
                 onChange={handleInputChange}
             />
@@ -101,6 +113,7 @@ const AdressPageForm = () => {
                 fullWidth
                 required
                 name={"state"}
+                // value={(getAdress.address ? getAdress.address.state: form.state)}
                 value={form.state}
                 onChange={handleInputChange}
             />
@@ -111,6 +124,9 @@ const AdressPageForm = () => {
                 color={"primary"}
             >Enviar</Button>
         </Form>
+        
+        {getAdress && getAdress.address && getAdress.address.street}
+        </>
     )
 }
 export default AdressPageForm;
