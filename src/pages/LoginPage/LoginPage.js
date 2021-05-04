@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
-import {makeStyles} from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import useForm from "../../hooks/useForm";
 import axios from "axios";
-import {BASE_URL} from "../../constants/urls";
+import { BASE_URL } from "../../constants/urls";
 import Button from '@material-ui/core/Button';
-import {useHistory} from "react-router-dom";
-import {goToSignUpPage} from "../../routes/coordinator";
+import { useHistory } from "react-router-dom";
+import { goToSignUpPage } from "../../routes/coordinator";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,20 +21,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const LoginPage = () => {
-    const [formData, handleInputChange] = useForm({email: "", password: ""})
-    const [info, setInfo] = useState({
-    })
+    const [formData, handleInputChange] = useForm({ email: "", password: "" })
+
     const history = useHistory()
     const classes = useStyles();
 
     const onSubmit = (event) => {
         event.preventDefault();
-        login()
-        if (info.hasAddress === true) {
-            history.push("/")
-        } else {
-            history.push("/adress")
-        }
+        login();
     }
 
     const login = () => {
@@ -42,7 +36,11 @@ const LoginPage = () => {
             .post(`${BASE_URL}/login`, formData)
             .then(response => {
                 window.localStorage.setItem("token", response.data.token)
-                setInfo(response.data.user)
+                    if (response.data.user.hasAddress) {
+                        history.push("/home")
+                    } else {
+                        history.push("/adress")
+                }
             })
             .catch(error => {
                 console.log(error)
@@ -76,7 +74,7 @@ const LoginPage = () => {
                 <Button type={"submit"} variant="contained"> Login </Button>
             </form>
             <div>
-                <Button onClick={() => {goToSignUpPage(history)}} variant="contained"> Cadastrar </Button>
+                <Button onClick={() => { goToSignUpPage(history) }} variant="contained"> Cadastrar </Button>
             </div>
         </div>
     )
