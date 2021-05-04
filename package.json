@@ -15,7 +15,6 @@
     "axios": "^0.21.1",
     "framer-motion": "^4",
     "material-components-web": "^11.0.0",
-    "mdbreact": "^5.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
