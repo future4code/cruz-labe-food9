@@ -12,8 +12,6 @@ const useForm = (initialState) => {
         setFormData(initialState)
     }
 
-    
-
     return [formData, handleInputChange, clear,setFormData]
 }
 
