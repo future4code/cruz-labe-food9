@@ -7,6 +7,7 @@ import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import RestaurantDetailPage from '../pages/RestaurantDetailPage/RestaurantDetailPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import AdressPage from '../pages/AdressPage/AdressPage'
+import ProfileUpdatePage from '../pages/ProfileUpdatePage/ProfileUpdatePage';
 
 const Router = () => {
   return (
@@ -30,6 +31,11 @@ const Router = () => {
         <Route exact path="/profile">
           <ProfilePage />
         </Route>
+
+        <Route exact path="/profileUpdate">
+          <ProfileUpdatePage/>
+        </Route>
+
         <Route exact path="/restaurants/:id">
           <RestaurantDetailPage />
         </Route>

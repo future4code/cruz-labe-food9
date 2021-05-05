@@ -17,6 +17,10 @@ export const goToProfilePage = (history) => {
     history.push("/profile")
 }
 
+export const goToProfileUpdatePage = (history) => {
+    history.push("/profileUpdate")
+}
+
 export const goToCartPage = (history) => {
     history.push("/cart")
 }

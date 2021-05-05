@@ -28,8 +28,6 @@ const AdressPageForm = () => {
         }
     }
 
-
-
     const [form, handleInputChange, clear, setFormData] = useForm(adress)
 
     const onsubmitForm = (e) => {

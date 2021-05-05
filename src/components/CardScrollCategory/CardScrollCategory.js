@@ -75,6 +75,7 @@ const CardScrollCaregory = () => {
       return (
         <TabPanel value={value} index={indice}>
                 {restaurants.name}
+                {console.log(value)}
         </TabPanel>
       )
     });
