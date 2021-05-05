@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledToolBar, StyledCart, StyledHome, StyledProfile, Perfil, PessoaPerfil, HistoricoPerfil, EnderecoPerfil, PessoaPerfilInfo, PessoaPerfilEditar, EnderecoPerfilInfo, EnderecoPerfilEditar } from './styled';
+import { Title,StyledToolBar, StyledCart, StyledHome, StyledProfile, Perfil, PessoaPerfil, HistoricoPerfil, EnderecoPerfil, PessoaPerfilInfo, PessoaPerfilEditar, EnderecoPerfilInfo, EnderecoPerfilEditar } from './styled';
 import AppBar from '@material-ui/core/AppBar';
 import avatar from '../../assets/avatar.svg';
 import cart from '../../assets/cart.svg';
@@ -15,6 +15,7 @@ import {
   goToCartPage,
   goToProfilePage
 } from '../../routes/coordinator';
+import OrderHistory from '../../components/OrderHistory/OrderHistory';
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -27,11 +28,19 @@ const ProfilePage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
+  const [orderHist,getOrderHist] = useRequestData([],`${BASE_URL}/orders/history`)
 
+
+  const orderHistScreen = orderHist.order && orderHist.order.map((order)=>{
+      <OrderHistory
+        restaurantName={order.restaurantName}
+        totalPrice={order.totalPrice}
+      />
+  })
 
   return (
     <div>
-      <p>Meu Perfil</p>
+      <Title>Meu Perfil</Title>
       <Perfil>
         <PessoaPerfil>
           <PessoaPerfilInfo>
@@ -53,7 +62,8 @@ const ProfilePage = () => {
           </EnderecoPerfilEditar>
         </EnderecoPerfil>
         <HistoricoPerfil>
-          Historico de pedidos
+          <p>Historico de pedidos</p>
+            {orderHistScreen && orderHistScreen.length > 0 ?orderHistScreen : <p>Você não realizou nenhum pedido!</p>}
         </HistoricoPerfil>
       </Perfil>
       
