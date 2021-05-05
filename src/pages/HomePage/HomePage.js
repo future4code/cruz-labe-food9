@@ -18,7 +18,7 @@ import {
   goToProfilePage
 } from '../../routes/coordinator';
 import useForm from '../../hooks/useForm';
-
+import CardScrollCaregory from '../../components/CardScrollCategory/CardScrollCategory'
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -62,6 +62,8 @@ const HomePage = () => {
           />
         </InputGroup>
      
+        <CardScrollCaregory />
+
       {restaurantScreen && restaurantScreen.length > 0 ?
           restaurantScreen.filter((rest)=>{
           return(form.name ? rest.props.name && rest.props.name.toLowerCase().includes(form.name):true)
