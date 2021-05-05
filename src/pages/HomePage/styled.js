@@ -10,7 +10,7 @@ export const StyledToolBar = styled(Toolbar)`
 `;
 
 export const StyledProfile = styled.img`
-  width: 35px;
+  width: 30px;
   padding: 0;
   margin-right: 28px;
   filter: invert(100%) sepia(0%) saturate(7438%) hue-rotate(63deg)
@@ -18,14 +18,14 @@ export const StyledProfile = styled.img`
 `;
 
 export const StyledCart = styled.img`
-  width: 38px;
+  width: 35px;
   padding: 0;
   filter: invert(100%) sepia(0%) saturate(7438%) hue-rotate(63deg)
     brightness(84%) contrast(65%);
 `;
 
 export const StyledHome = styled.img`
-  width: 35px;
+  width: 30px;
   padding: 0;
   margin-left: 28px;
   filter: invert(69%) sepia(30%) saturate(899%) hue-rotate(62deg)
