@@ -12,16 +12,7 @@ const AdressPageForm = () => {
     const history = useHistory();
     const [adress, getAdress] = useRequestData({}, `${BASE_URL}/profile/address`)
 
-    const initiaState = {
-        "street": "",
-        "number": "",
-        "neighbourhood": "",
-        "city": "",
-        "state": "",
-        "complement": ""
-    }
-
-
+   
     const updateAdress = async () => {
         try {
             const response = await axios.put(`${BASE_URL}/address`, form, {
@@ -170,3 +161,5 @@ const AdressPageForm = () => {
     )
 }
 export default AdressPageForm;
+
+

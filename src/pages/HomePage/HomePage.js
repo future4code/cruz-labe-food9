@@ -19,6 +19,7 @@ import {
 } from '../../routes/coordinator';
 import useForm from '../../hooks/useForm';
 
+
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
@@ -27,40 +28,46 @@ const useStyles = makeStyles(() => ({
 }));
 
 const HomePage = () => {
+
   useProtectedPage();
   const classes = useStyles();
   const history = useHistory();
-  const [restaurant, getRestaurant] = useRequestData(
-    [],
-    `${BASE_URL}/restaurants`
-  );
+  const [restaurant, getRestaurant] = useRequestData([], `${BASE_URL}/restaurants`);
 
   const restaurantScreen =
     restaurant.restaurants &&
     restaurant.restaurants.map((restaurants) => {
-      return <RestaurantCard key={restaurants.id} name={restaurants.name} />;
+      return <RestaurantCard
+        key={restaurants.id}
+        name={restaurants.name}
+      />;
     });
-  const initialState = {
-    text: ''
-  };
-  const [form, handleInputChange, clear, setFormData] = useForm(initialState);
-  console.log(form.text);
+
+  const [form, onChange, clear] = useForm({ name: "" })
+  
   return (
     <div>
       <p>HomePage</p>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          children={<SearchIcon color="gray.300" />}
-        />
-        <Input
-          value={form.text}
-          onChange={handleInputChange}
-          type="search"
-          placeholder="Restaurante"
-        />
-      </InputGroup>
-      {restaurantScreen}
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents="none"
+            children={<SearchIcon color="gray.300" />}
+          />
+          <Input
+            name = {'name'}
+            value = {form.name.toLowerCase()}
+            onChange = {onChange}
+            type="search"
+            placeholder="Restaurante"
+          />
+        </InputGroup>
+     
+      {restaurantScreen && restaurantScreen.length > 0 ?
+          restaurantScreen.filter((rest)=>{
+          return(form.name ? rest.props.name && rest.props.name.toLowerCase().includes(form.name):true)
+        }):<p>Carregando</p>}
+        
+
       <AppBar position="fixed" color="inherit" className={classes.appBar}>
         <StyledToolBar>
           <StyledHome onClick={() => goToHomePage(history)} src={home} />
