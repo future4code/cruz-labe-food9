@@ -1,7 +1,11 @@
 import Toolbar from '@material-ui/core/Toolbar';
 import styled from 'styled-components';
 
-
+export const Title = styled.p`
+  text-align:center;
+  font-weight:bold;
+  font-size:2em;
+`
 
 export const Perfil = styled.div`
   min-height:87vh;
@@ -23,6 +27,9 @@ export const HistoricoPerfil = styled.div`
   border-bottom:1px solid black;
   display:flex;
   flex:2;
+  justify-content:flex-start;
+  align-items:center;
+  flex-direction:column;
 `
 export const PessoaPerfilInfo =styled.div`
   display:flex;
