@@ -7,6 +7,7 @@ export const StyledToolBar = styled(Toolbar)`
   flex-direction: row;
   flex-grow: 20px;
   justify-content: space-between;
+  position: sticky;
 `;
 
 export const StyledProfile = styled.img`
@@ -30,4 +31,31 @@ export const StyledHome = styled.img`
   margin-left: 28px;
   filter: invert(69%) sepia(30%) saturate(899%) hue-rotate(62deg)
     brightness(85%) contrast(82%);
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: black;
+  padding: 10px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+`;
+
+export const TextContainerHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: black;
+  padding: 10px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  height: 64px;
 `;
