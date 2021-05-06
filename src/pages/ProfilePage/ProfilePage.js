@@ -36,12 +36,14 @@ import {
   goToProfilePage
 } from '../../routes/coordinator';
 import { Text } from '@chakra-ui/layout';
-import OrderHistory from '../../components/OrderHistory/OrderHistory'
+import OrderHistory from '../../components/OrderHistory/OrderHistory';
+import { Box } from '@chakra-ui/layout';
 
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
-    bottom: 0
+    bottom: 0,
+    position: 'sticky'
   }
 }));
 
@@ -55,6 +57,8 @@ const ProfilePage = () => {
       <TextContainerHeader>
         <Text fontSize="16px">Meu Perfil</Text>{' '}
       </TextContainerHeader>
+    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
+      <Title>Meu Perfil</Title>
       <Perfil>
         <PessoaPerfil>
           <PessoaPerfilInfo>
@@ -92,7 +96,7 @@ const ProfilePage = () => {
           />
         </StyledToolBar>
       </AppBar>
-    </div>
+    </Box>
   );
 };
 

@@ -16,7 +16,7 @@ import useRequestData from '../../hooks/useRequestData';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { SearchIcon } from '@chakra-ui/icons';
-import { Image, Input, InputGroup, InputLeftElement, Text, Box } from '@chakra-ui/react';
+import { Image, Input, InputGroup, InputLeftElement, Text, Box, IconButton, useColorMode } from '@chakra-ui/react';
 import RestaurantCard from '../../components/restaurantCard/restaurantCard';
 import {
   goToHomePage,
@@ -26,6 +26,7 @@ import {
 import useForm from '../../hooks/useForm';
 import CardScrollCaregory from '../../components/CardScrollCategory/CardScrollCategory';
 import patrick_lanchando from '../../assets/images/patrick.gif'
+import { FaSun, FaMoon} from 'react-icons/fa'
 
 
 const useStyles = makeStyles(() => ({
@@ -36,7 +37,11 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+
 const HomePage = () => {
+
+  const {colorMode, toggleColorMode } = useColorMode()
+
   useProtectedPage();
   const classes = useStyles();
   const history = useHistory();
@@ -63,7 +68,12 @@ const HomePage = () => {
   const [form, onChange, clear] = useForm({ name: '' });
 
   return (
-    <Box w='360px' h='640px' >
+    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px" >
+      <IconButton 
+      icon={ colorMode ==='light' ? <FaSun/> : <FaMoon/>}
+      onClick={toggleColorMode}
+      isRound='true'
+      />
       <TextContainerHeader>
         <Text fontSize="16px">FutureEats</Text>
       </TextContainerHeader>

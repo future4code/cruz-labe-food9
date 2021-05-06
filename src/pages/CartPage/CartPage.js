@@ -16,11 +16,13 @@ import {
   goToCartPage,
   goToProfilePage
 } from '../../routes/coordinator';
+import { Box } from '@chakra-ui/layout';
 
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
-    bottom: 0
+    bottom: 0,
+    position: 'sticky'
   }
 }));
 
@@ -28,7 +30,7 @@ const CartPage = () => {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <div>
+    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
       <p>CartPage</p>
       <AppBar position="fixed" color="inherit" className={classes.appBar}>
         <StyledToolBar>
@@ -40,7 +42,7 @@ const CartPage = () => {
           />
         </StyledToolBar>
       </AppBar>
-    </div>
+    </Box>
   );
 };
 
