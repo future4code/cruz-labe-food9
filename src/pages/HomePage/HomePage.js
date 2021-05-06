@@ -68,7 +68,7 @@ const HomePage = () => {
   const [form, onChange, clear] = useForm({ name: '' });
 
   return (
-    <Box border='1px solid' borderColor='#C4C4C4' w="360px" h="640px" >
+    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px" >
       <IconButton 
       icon={ colorMode ==='light' ? <FaSun/> : <FaMoon/>}
       onClick={toggleColorMode}
