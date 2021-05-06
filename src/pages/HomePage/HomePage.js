@@ -99,7 +99,7 @@ const HomePage = () => {
             : true;
         })
       ) : 
-        <Image ml='40px' src={patrick_lanchando} w='250px'/>
+        <Image ml='60px' src={patrick_lanchando} w='250px'/>
       } {restaurantScreen && restaurantScreen.length > 0 ? (
         <AppBar position="fixed" color="inherit" className={classes.appBar}>
           <StyledToolBar>
