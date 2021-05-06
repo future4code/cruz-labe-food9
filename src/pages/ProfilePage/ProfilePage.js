@@ -41,7 +41,7 @@ const ProfilePage = () => {
   })
 
   return (
-    <Box border='1px solid' borderColor='#C4C4C4' w="360px" h="640px">
+    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
       <Title>Meu Perfil</Title>
       <Perfil>
         <PessoaPerfil>
