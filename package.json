@@ -13,6 +13,7 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "dayjs": "^1.10.4",
     "framer-motion": "^4.1.11",
     "material-components-web": "^11.0.0",
     "react": "^17.0.2",

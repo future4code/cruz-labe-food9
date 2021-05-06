@@ -16,14 +16,13 @@ import {
   goToCartPage,
   goToProfilePage
 } from '../../routes/coordinator';
-import useRequestData from '../../hooks/useRequestData'
-import { BASE_URL } from '../../constants/urls'
-
+import { Box } from '@chakra-ui/layout';
 
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
-    bottom: 0
+    bottom: 0,
+    position: 'sticky'
   }
 }));
 
@@ -32,15 +31,8 @@ const CartPage = () => {
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
   return (
-    <div>
-      <p>Meu Carrinho </p>
-      <div>
-        <p><strong>Endereço de Entrega</strong></p>
-        <p>{profile.user && profile.user.address}</p>
-      </div>
-
-
-
+    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
+      <p>CartPage</p>
       <AppBar position="fixed" color="inherit" className={classes.appBar}>
         <StyledToolBar>
           <StyledHome onClick={() => goToHomePage(history)} src={home} />
@@ -51,7 +43,7 @@ const CartPage = () => {
           />
         </StyledToolBar>
       </AppBar>
-    </div>
+    </Box>
   );
 };
 
