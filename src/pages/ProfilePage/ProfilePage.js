@@ -53,12 +53,10 @@ const ProfilePage = () => {
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
  
   return (
-    <div>
+    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
       <TextContainerHeader>
         <Text fontSize="16px">Meu Perfil</Text>{' '}
       </TextContainerHeader>
-    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
-      <Title>Meu Perfil</Title>
       <Perfil>
         <PessoaPerfil>
           <PessoaPerfilInfo>
