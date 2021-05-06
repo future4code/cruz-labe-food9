@@ -4,17 +4,17 @@ import { Box, VStack, Text } from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
 import logo_future_eat from "../../assets/images/logo_future_eat.png"
 import {ButtonBack} from './styled'
-
-
+import {goToLoginPage} from "../../routes/coordinator";
+import {useHistory} from "react-router-dom";
 
 const SignUpPage = () => {
-
+    const history = useHistory()
   return (
       <Box border='1px solid' borderColor='#C4C4C4' w="360px" h="640px">
           <Box h='20px'>
           </Box>
         <Box borderBottomColor='black'>
-            <ButtonBack/>
+            <ButtonBack onClick={ () => goToLoginPage(history)}/>
         </Box>
         <hr/>
         <VStack>
