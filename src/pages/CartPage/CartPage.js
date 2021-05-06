@@ -16,6 +16,9 @@ import {
   goToCartPage,
   goToProfilePage
 } from '../../routes/coordinator';
+import useRequestData from '../../hooks/useRequestData'
+import { BASE_URL } from '../../constants/urls'
+
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -27,9 +30,17 @@ const useStyles = makeStyles(() => ({
 const CartPage = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
   return (
     <div>
-      <p>CartPage</p>
+      <p>Meu Carrinho </p>
+      <div>
+        <p><strong>Endereço de Entrega</strong></p>
+        <p>{profile.user && profile.user.address}</p>
+      </div>
+
+
+
       <AppBar position="fixed" color="inherit" className={classes.appBar}>
         <StyledToolBar>
           <StyledHome onClick={() => goToHomePage(history)} src={home} />

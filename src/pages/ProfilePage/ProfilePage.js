@@ -31,12 +31,14 @@ const ProfilePage = () => {
   const [orderHist,getOrderHist] = useRequestData([],`${BASE_URL}/orders/history`)
 
 
-  const orderHistScreen = orderHist.order && orderHist.order.map((order)=>{
+  const orderHistScreen = orderHist && orderHist.orders && orderHist.orders.map((order)=>{
       <OrderHistory
         restaurantName={order.restaurantName}
         totalPrice={order.totalPrice}
       />
   })
+
+  console.log(orderHist.orders.totalPrice);
 
   return (
     <div>

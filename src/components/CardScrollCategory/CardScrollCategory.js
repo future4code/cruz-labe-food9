@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { StyledTabPanel } from './style';
@@ -9,7 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import useRequestData from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/urls';
-import RestaurantCard from '../../components/restaurantCard/restaurantCard';
+import RestaurantCardFilter from '../../components/restaurantCardFilter/restaurantCardFilter';
+
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,9 +54,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const CardScrollCaregory = () => {
+const CardScrollCaregory = (props) => {
   const classes = useStyles();
   const [value, setValue] = useState();
+  
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -69,20 +73,20 @@ const CardScrollCaregory = () => {
     restaurant.restaurants &&
     restaurant.restaurants.map((restaurants, indice) => {
       return (
-        <Tab
+        <Tab 
           key={restaurants.id}
           label={restaurants.category}
           {...a11yProps(indice)}
         />
       );
     });
-
+    
   const categoryRestaurantScreen =
     restaurant.restaurants &&
     restaurant.restaurants.map((restaurants, indice) => {
       return (
         <TabPanel key={restaurants.id} value={value} index={indice}>
-          <RestaurantCard
+          <RestaurantCardFilter
             key={restaurants.id}
             name={restaurants.name}
             shipping={restaurants.shipping}
@@ -94,7 +98,7 @@ const CardScrollCaregory = () => {
     });
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root}>   
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -103,6 +107,7 @@ const CardScrollCaregory = () => {
           textColor="primary"
           variant="scrollable"
           scrollButtons="auto"
+         
         >
           {restaurantCategoryScreen}
         </Tabs>
