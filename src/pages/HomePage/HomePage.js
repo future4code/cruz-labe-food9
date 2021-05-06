@@ -1,8 +1,10 @@
+import { Text } from '@chakra-ui/layout'
 import React from 'react'
 
 const HomePage = () => {
+    
     return(
-        <p>HomePage</p>
+        <Text>HomePage</Text>
     )
 }
 
