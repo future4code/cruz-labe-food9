@@ -1,83 +1,36 @@
-import React, { useState } from 'react'
-import TextField from '@material-ui/core/TextField'
-import { makeStyles } from '@material-ui/core/styles'
-import useForm from "../../hooks/useForm";
-import axios from "axios";
-import { BASE_URL } from "../../constants/urls";
-import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom";
+import React from "react"
+import FormLogin from "./FormLogin"
+import { Box, VStack, Text, Center } from "@chakra-ui/react"
+import { Image } from "@chakra-ui/react"
+import logo_future_eat from "../../assets/images/logo_future_eat.png"
+import {useHistory} from 'react-router-dom'
 import { goToSignUpPage } from "../../routes/coordinator";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '50ch',
-        },
-        '& > *': {
-            margin: theme.spacing(1),
-        }
-    }
-}))
+
 
 const LoginPage = () => {
-    const [formData, handleInputChange] = useForm({ email: "", password: "" })
-
     const history = useHistory()
-    const classes = useStyles();
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-        login();
-    }
+    
 
-    const login = () => {
-        axios
-            .post(`${BASE_URL}/login`, formData)
-            .then(response => {
-                window.localStorage.setItem("token", response.data.token)
-                    if (response.data.user.hasAddress) {
-                        history.push("/home")
-                    } else {
-                        history.push("/adress")
-                }
-            })
-            .catch(error => {
-                console.log(error)
-                alert("Tem alguma coisa errada meu chapa")
-            })
-    }
-
-    return (
-        <div>
-            <form onSubmit={onSubmit} className={classes.root} noValidate autoComplete="off">
-                <TextField
-                    required
-                    type="email"
-                    id="email-input"
-                    label="E-mail"
-                    variant="outlined"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                />
-                <TextField
-                    required
-                    type="password"
-                    id="password-input"
-                    label="Password"
-                    variant="outlined"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                />
-                <Button type={"submit"} variant="contained"> Login </Button>
-            </form>
-            <div>
-                <Button onClick={() => { goToSignUpPage(history) }} variant="contained"> Cadastrar </Button>
-            </div>
-        </div>
-    )
-}
+  return (
+      <Box border='1px solid' borderColor='#C4C4C4' w="360px" h="640px">
+            <VStack>
+            <Box>
+                <Image mb='16px' mt='88px' src={logo_future_eat} w='104px' h='58px' />
+            </Box>
+                <Text mt='10px' p='8px' fontSize='16px'><b>Entrar</b></Text>
+            <FormLogin/>
+            <Center>
+                <Text 
+                mt='15px' 
+                cursor='pointer'
+                onClick={() => goToSignUpPage(history)}><b>Não possui cadastro? Clique aqui.</b></Text>
+            </Center>
+            </VStack>
+      
+      </Box>
+  );
+};
 
 export default LoginPage

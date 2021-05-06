@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Center, Button, useToast } from '@chakra-ui/react'
 import TextField from '@material-ui/core/TextField';
 import { Form } from './styled'
@@ -8,17 +8,20 @@ import {useHistory} from 'react-router-dom'
 
 
 const FormSignUp = () => {
-    const [form, onChange, clear] = useForm({name: '', email: '', cpf: '', password: '', confirmPassword: ''})
+    const [form, onChange, clear] = useForm({name: '', email: '', cpf: '', password: ''})
+    const [confirm, setConfirm] = useState('')
 
     const toast = useToast()
     const history = useHistory()
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        signUp(form, clear, toast, history)
+        signUp(form, clear, toast, history, confirm, setConfirm)
     }
     
-
+    const handleConfirm = (e) => {
+        setConfirm(e.target.value)
+    }
 
     return(
             <Form onSubmit={onSubmitForm}>
@@ -101,9 +104,9 @@ const FormSignUp = () => {
                 </Center>
                 <Center>
                     <TextField
-                    name={'confirmPassword'}
-                    value={form.confirmPassword}
-                    onChange={onChange}
+                    name={'confirm'}
+                    value={form.confirm}
+                    onChange={handleConfirm}
                     type='password'
                     size="normal"
                     required
