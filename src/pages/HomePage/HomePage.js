@@ -16,7 +16,7 @@ import useRequestData from '../../hooks/useRequestData';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { SearchIcon } from '@chakra-ui/icons';
-import { Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react';
+import { Image, Input, InputGroup, InputLeftElement, Text, Box } from '@chakra-ui/react';
 import RestaurantCard from '../../components/restaurantCard/restaurantCard';
 import {
   goToHomePage,
@@ -25,6 +25,8 @@ import {
 } from '../../routes/coordinator';
 import useForm from '../../hooks/useForm';
 import CardScrollCaregory from '../../components/CardScrollCategory/CardScrollCategory';
+import patrick_lanchando from '../../assets/images/patrick.gif'
+
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -61,7 +63,7 @@ const HomePage = () => {
   const [form, onChange, clear] = useForm({ name: '' });
 
   return (
-    <div>
+    <Box w='360px' h='640px' >
       <TextContainerHeader>
         <Text fontSize="16px">FutureEats</Text>
       </TextContainerHeader>
@@ -96,10 +98,9 @@ const HomePage = () => {
                 rest.props.name.toLowerCase().includes(form.name)
             : true;
         })
-      ) : (
-        <p>Carregando</p>
-      )}
-      {restaurantScreen && restaurantScreen.length > 0 ? (
+      ) : 
+        <Image ml='40px' src={patrick_lanchando} w='250px'/>
+      } {restaurantScreen && restaurantScreen.length > 0 ? (
         <AppBar position="fixed" color="inherit" className={classes.appBar}>
           <StyledToolBar>
             <StyledHome onClick={() => goToHomePage(history)} src={home} />
@@ -111,7 +112,7 @@ const HomePage = () => {
           </StyledToolBar>
         </AppBar>
       ) : null}
-    </div>
+    </Box>
   );
 };
 
