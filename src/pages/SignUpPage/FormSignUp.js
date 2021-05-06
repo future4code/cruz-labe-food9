@@ -47,19 +47,20 @@ const FormSignUp = () => {
                     <TextField
                     name={'email'}
                     value={form.email}
-                    onChange={onChange}
+                    onChange={onChange}                   
+                    label="E-mail"
+                    placeholder="email@email.com"
+                    margin="normal"
+                    variant="outlined"
                     size="normal"
                     required
                     fullWidth
                     borderColor='green'
-                    label="E-mail"
                     style={{ margin: 8 }}
-                    placeholder="email@email.com"
-                    margin="normal"
                     InputLabelProps={{
                         shrink: true,
                     }}
-                    variant="outlined"
+                    
                     />                
                 </Center>
                 <Center>
