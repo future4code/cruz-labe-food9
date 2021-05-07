@@ -38,12 +38,12 @@ const CartPage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
-  const [orderActive, getOrderActive] = useRequestData([], `${BASE_URL}/active-order`)
+  const [orderActive, getOrderActive] = useRequestData({}, `${BASE_URL}/active-order`)
   const [restaurant, getRestaurant] = useRequestData([], `${BASE_URL}/restaurants`);
 
 
   const RestaurantFitler = restaurant.restaurants && restaurant.restaurants.filter((rest) => {
-    if (rest.name === orderActive.order && orderActive.order.restaurantName) {
+    if (rest.name ===  orderActive.order.restaurantName) {
       return true;
     }
   })
@@ -54,9 +54,9 @@ const CartPage = () => {
     return (
       <CartItemPrincipal>
         <div>
-          <p>Loja: {RestaurantFitler && RestaurantFitler[0].name}</p>
-          <p>Endereço: {RestaurantFitler && RestaurantFitler[0].address}</p>
-          <p>Tempo entrega: {(RestaurantFitler && RestaurantFitler[0].deliveryTime)}-{(RestaurantFitler && RestaurantFitler[0].deliveryTime)+15}min</p>
+          <p>Loja: {RestaurantFitler && RestaurantFitler.length > 0 && RestaurantFitler[0].name}</p>
+          <p>Endereço: {RestaurantFitler && RestaurantFitler.length > 0&& RestaurantFitler[0].address}</p>
+          <p>Tempo entrega: {(RestaurantFitler && RestaurantFitler.length > 0 && RestaurantFitler[0].deliveryTime)}-{(RestaurantFitler && RestaurantFitler[0].deliveryTime)+15}min</p>
           {/* <p>{orderActive.order && orderActive.order.restaurantName}</p>
         <p>{orderActive.order && orderActive.order.totalPrice}</p> */}
         </div>
@@ -77,7 +77,7 @@ const CartPage = () => {
           <p>{profile.user && profile.user.address}</p>
         </CardInfoPerson>
         <CardInfoOrder>
-          {orderActive.order ? cartItens() : <p>Carrinho vazio</p>}
+          {orderActive && orderActive.order ? cartItens() : <p>Carrinho vazio</p>}
         </CardInfoOrder>
         <div>
           <p>Frete: R${RestaurantFitler && RestaurantFitler[0].shipping},00</p>
