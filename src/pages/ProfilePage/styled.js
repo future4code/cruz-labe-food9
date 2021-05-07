@@ -112,8 +112,14 @@ export const TextContainer = styled.div`
   color: black;
   padding: 10px;
   font-weight: 500;
-  margin-bottom: 25px;
   width: 100%;
   height: 36px;
-  border-bottom: 1px solid black;
 `;
+
+export const Path = styled.div`
+  width: 337px;
+  height: 1px;
+  margin-left: 10px;
+  margin-right: 15px;
+  border: 1px solid black;
+`

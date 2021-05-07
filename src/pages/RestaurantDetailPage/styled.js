@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {IoIosArrowBack} from "react-icons/io";
+import { IoIosArrowBack } from 'react-icons/io';
 
 export const TextContainerHeader = styled.div`
   display: flex;
@@ -24,7 +24,9 @@ export const StyledImg = styled.img`
 `;
 
 export const ButtonBack = styled(IoIosArrowBack)`
-  margin-top: 10px;
+  position: absolute;
   width: 23px;
   height: 24px;
+  margin: 10px 300px 10px 0px;
+  object-fit: contain;
 `;
