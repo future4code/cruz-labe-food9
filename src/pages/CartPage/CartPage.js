@@ -102,7 +102,8 @@ const CartPage = () => {
 
   console.log("id",states.id);
   return (
-    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
+
+    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
       <p>Meu Carrinho </p>
       <CardInfo>
         <CardInfoPerson>
@@ -137,7 +138,6 @@ const CartPage = () => {
           </FormPay>
         </CardInfoPay>
       </CardInfo>
-
 
       <AppBar position="fixed" color="inherit" className={classes.appBar}>
         <StyledToolBar>
