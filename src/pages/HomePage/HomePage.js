@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
 import {
   StyledToolBar,
@@ -48,11 +48,13 @@ const HomePage = () => {
     `${BASE_URL}/restaurants`
   );
 
+  
+
   const restaurantScreen =
     restaurant.restaurants &&
     restaurant.restaurants.map((restaurants) => {
       return (
-        <RestaurantCard
+        <RestaurantCard 
           key={restaurants.id}
           id={restaurants.id}
           name={restaurants.name}
@@ -93,7 +95,7 @@ const HomePage = () => {
       </InputGroup>
 
       <CardScrollCaregory />
-
+    
       {restaurantScreen && restaurantScreen.length > 0 ? (
         restaurantScreen.filter((rest) => {
           return form.name
@@ -102,7 +104,9 @@ const HomePage = () => {
             : true;
         })
       ) : 
+
         <Image mt='50px' ml='50px' src={patrick_lanchando} w='250px'/>
+
       } {restaurantScreen && restaurantScreen.length > 0 ? (
         <AppBar position="fixed" color="inherit" className={classes.appBar}>
           <StyledToolBar>

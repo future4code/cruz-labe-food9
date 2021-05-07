@@ -4,7 +4,8 @@ export const PedidosContainer = styled.div`
   width: 328px;
   height: 102px;
   margin: 7px 0 0;
-  padding: 16px;
+  padding-top: 10px;
+  padding-left: 10px;
   border-radius: 8px;
   border: solid 1px #b8b8b8;
 `;
@@ -28,4 +29,10 @@ export const StyledTotal = styled.p`
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.39px;
+`;
+
+export const StyledData = styled.p`
+  margin: 9px 0 7px;
+  font-size: 12px;
+  letter-spacing: -0.29px;
 `;
