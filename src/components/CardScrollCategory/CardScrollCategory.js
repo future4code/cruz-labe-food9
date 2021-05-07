@@ -88,6 +88,7 @@ const CardScrollCaregory = (props) => {
         <TabPanel key={restaurants.id} value={value} index={indice}>
           <RestaurantCardFilter
             key={restaurants.id}
+            id={restaurants.id}
             name={restaurants.name}
             shipping={restaurants.shipping}
             deliveryTime={restaurants.deliveryTime}

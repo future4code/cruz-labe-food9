@@ -26,11 +26,7 @@ import {
 import useForm from '../../hooks/useForm';
 import CardScrollCaregory from '../../components/CardScrollCategory/CardScrollCategory';
 import patrick_lanchando from '../../assets/images/patrick.gif'
-<<<<<<< HEAD
-import { GlobalStateContext } from '../../Global/GlobalStateContext';
-=======
 import { FaSun, FaMoon} from 'react-icons/fa'
->>>>>>> 67eacc6daac23634d6b51a12f8d8fa6d02e6c194
 
 
 const useStyles = makeStyles(() => ({
