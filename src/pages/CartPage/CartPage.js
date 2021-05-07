@@ -30,7 +30,7 @@ const CartPage = () => {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
+    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
       <p>CartPage</p>
       <AppBar position="fixed" color="inherit" className={classes.appBar}>
         <StyledToolBar>

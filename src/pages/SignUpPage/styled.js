@@ -5,6 +5,9 @@ export const ButtonBack  = styled(IoIosArrowBack)`
             margin-top: 10px;
             width: 23px;
             height: 24px;
+            &:active{
+                color: green
+            }
             `;
 
 export const Form = styled.form`

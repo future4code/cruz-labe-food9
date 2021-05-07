@@ -16,7 +16,7 @@ import useRequestData from '../../hooks/useRequestData';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { SearchIcon } from '@chakra-ui/icons';
-import { Image, Input, InputGroup, InputLeftElement, Text, Box, IconButton, useColorMode } from '@chakra-ui/react';
+import { Image, Input, InputGroup, InputLeftElement, Text, Box } from '@chakra-ui/react';
 import RestaurantCard from '../../components/restaurantCard/restaurantCard';
 import {
   goToHomePage,
@@ -26,7 +26,6 @@ import {
 import useForm from '../../hooks/useForm';
 import CardScrollCaregory from '../../components/CardScrollCategory/CardScrollCategory';
 import patrick_lanchando from '../../assets/images/patrick.gif'
-import { FaSun, FaMoon} from 'react-icons/fa'
 
 
 const useStyles = makeStyles(() => ({
@@ -40,7 +39,6 @@ const useStyles = makeStyles(() => ({
 
 const HomePage = () => {
 
-  const {colorMode, toggleColorMode } = useColorMode()
 
   useProtectedPage();
   const classes = useStyles();
@@ -68,12 +66,7 @@ const HomePage = () => {
   const [form, onChange, clear] = useForm({ name: '' });
 
   return (
-    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px" >
-      <IconButton 
-      icon={ colorMode ==='light' ? <FaSun/> : <FaMoon/>}
-      onClick={toggleColorMode}
-      isRound='true'
-      />
+    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px" >
       <TextContainerHeader>
         <Text fontSize="16px">FutureEats</Text>
       </TextContainerHeader>
@@ -109,7 +102,7 @@ const HomePage = () => {
             : true;
         })
       ) : 
-        <Image ml='60px' src={patrick_lanchando} w='250px'/>
+        <Image mt='50px' ml='50px' src={patrick_lanchando} w='250px'/>
       } {restaurantScreen && restaurantScreen.length > 0 ? (
         <AppBar position="fixed" color="inherit" className={classes.appBar}>
           <StyledToolBar>

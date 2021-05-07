@@ -25,6 +25,25 @@ export const goToCartPage = (history) => {
     history.push("/cart")
 }
 
+export const goToIndiqueUmAmigoPage = (history) => {
+    history.push("/indiqueUmAmigo")
+}
+export const goToCuponsPage = (history) => {
+    history.push("/cupons")
+}
+export const goToPedidosPage = (history) => {
+    history.push("/pedidos")
+}
+export const goToPagamentoPage = (history) => {
+    history.push("/pagamento")
+}
+export const goToAjudaPage = (history) => {
+    history.push("/help")
+}
+export const goToAvaliacoesPage = (history) => {
+    history.push("/avaliacoes")
+}
+
 
 export const goToRestaurantDetailPage = (history, id) => {
     history.push(`/restaurants/${id}`)

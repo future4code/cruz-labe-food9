@@ -6,7 +6,7 @@ import {Container} from './style'
 const AdressPage = () =>{
     useProtectedPage();
     return(
-        <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
+        <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
             <h1>Meu endereço</h1>
             <AdressPageForm/>
         </Box>
