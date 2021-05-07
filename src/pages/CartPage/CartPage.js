@@ -110,7 +110,7 @@ const CartPage = () => {
           <p>{profile.user && profile.user.address}</p>
         </CardInfoPerson>
         <div>
-          {cartItens()}
+          {RestaurantFitler && states.cart && states.cart.length > 0 ? cartItens() : <p>Sem nada</p>}
         </div>
         <CardInfoOrder>
           {states.cart && states.cart.length > 0 ? produtList : <p>Carrinho vazio</p>}
