@@ -21,8 +21,9 @@ const RestaurantDetailPage = (props) => {
     `${BASE_URL}/restaurants/${params.id}`
   );
   const { states, setters } = useContext(GlobalStateContext);
-
-  console.log(restaurant);
+   
+  //pegar o ID do restaurant 
+    setters.setId(params.id); 
 
   const addItemToCart = (newItem) =>{
     const index = states.cart.findIndex((i)=> i.id === newItem.id);
