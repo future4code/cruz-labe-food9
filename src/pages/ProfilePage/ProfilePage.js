@@ -15,7 +15,8 @@ import {
   EnderecoPerfilEditar,
   TextContainerHeader,
   Title2,
-  TextContainer
+  TextContainer,
+  Path
 } from './styled';
 import AppBar from '@material-ui/core/AppBar';
 import avatar from '../../assets/avatar.svg';
@@ -80,6 +81,7 @@ const ProfilePage = () => {
         <TextContainer>
           <p>Historico de pedidos</p>
         </TextContainer>
+        <Path/>
         <HistoricoPerfil>
           <OrderHistory/>
         </HistoricoPerfil>

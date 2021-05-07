@@ -16,7 +16,7 @@ const RestaurantCard = (props) => {
       </TextContainer>
       <TextContainer>
         <p>
-          {props.deliveryTime - 10}-{props.deliveryTime}
+          {props.deliveryTime - 10}-{props.deliveryTime} min
         </p>
         <p>Frete R${props.shipping},00</p>
       </TextContainer>
