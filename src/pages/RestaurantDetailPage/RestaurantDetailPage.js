@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/layout';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { TextContainerHeader } from './styled';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { ButtonBack } from './styled';
 import { useHistory } from 'react-router-dom';
 import RestaurantDetailsCard from '../../components/RestaurantDetailsCard/RestaurantDetailsCard';
 import RestaurantDetailsHeader from '../../components/RestaurantDetailsHeader/RestaurantDetailsHeader';
+import { GlobalStateContext } from '../../Global/GlobalStateContext';
 
 const RestaurantDetailPage = (props) => {
   useProtectedPage();
@@ -19,8 +20,21 @@ const RestaurantDetailPage = (props) => {
     {},
     `${BASE_URL}/restaurants/${params.id}`
   );
+  const { states, setters } = useContext(GlobalStateContext);
 
   console.log(restaurant);
+
+  const addItemToCart = (newItem) =>{
+    const index = states.cart.findIndex((i)=> i.id === newItem.id);
+    let newCart = [...states.cart]
+    if(index === -1){
+      newCart.push({...newItem,amount:1})
+    }else{
+      newCart[index].amount += 1;
+    }
+    setters.setCart(newCart)
+    alert(`${newItem.name} foi adicionado ao seu carrinho!`)
+  }
 
   {
     /* Map para puxar a info dos produtos do menu*/
@@ -35,6 +49,7 @@ const RestaurantDetailPage = (props) => {
           name={item.name}
           description={item.description}
           price={item.price}
+          addItemToCart={()=>addItemToCart(item)}
         ></RestaurantDetailsCard>
       );
     });
