@@ -12,7 +12,7 @@ export const CardInfo = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    height:90vh;
+    min-height:90vh;
     justify-content:space-around;
 `
 export const CardInfoPerson = styled.div`
