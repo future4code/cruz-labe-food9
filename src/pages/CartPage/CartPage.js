@@ -27,6 +27,7 @@ import useRequestData from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/urls';
 import { Button } from '@chakra-ui/react'
 import { GlobalStateContext } from '../../Global/GlobalStateContext'
+import CartCard from '../../components/CartCard/CartCard'
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
@@ -53,12 +54,27 @@ const CartPage = () => {
     setPriceToPay(currentTotal)
   }, [states.cart])
 
+  const removeItemFromCart = (itemToRemove) => {
+    const index = states.cart.findIndex((i) => i.id === itemToRemove.id);
+    let newCart = [...states.cart];
+    if (newCart[index].amount === 1) {
+      newCart.splice(index, 1);
+    } else {
+      newCart[index].amount -= 1;
+    }
+    setters.setCart(newCart);
+  };
+
   const produtList = states.cart.map((item) => {
     return (
-      <>
-        <p>{item.name}</p>
-        <p>R${item.price} <b>x{item.amount}</b></p>
-      </>
+      <CartCard
+        name={item.name}
+        price={item.price}
+        amount={item.amount}
+        photoUrl={item.photoUrl}
+        removeItemFromCart={()=>removeItemFromCart(item)}
+        description={item.description}
+      />      
     )
   })
 

@@ -22,7 +22,7 @@ const RestaurantDetailPage = (props) => {
   );
   const { states, setters } = useContext(GlobalStateContext);
 
-  console.log(restaurant);
+  
 
   const addItemToCart = (newItem) =>{
     const index = states.cart.findIndex((i)=> i.id === newItem.id);
