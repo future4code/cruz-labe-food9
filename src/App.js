@@ -11,7 +11,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Box border='1px solid' borderColor='#C4C4C4' w="360px" h="640px">
         <GlobalState>
-          <Router />
+          <Router/>
         </GlobalState>
       </Box>
     </ThemeProvider>
