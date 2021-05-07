@@ -9,7 +9,7 @@ import GlobalState from './Global/GlobalState'
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box border='1px solid' borderColor='#C4C4C4' w="360px" h="640px">
+      <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
         <GlobalState>
           <Router />
         </GlobalState>
