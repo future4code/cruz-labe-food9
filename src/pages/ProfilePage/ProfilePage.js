@@ -39,6 +39,8 @@ import {
 import { Text } from '@chakra-ui/layout';
 import OrderHistory from '../../components/OrderHistory/OrderHistory';
 import { Box } from '@chakra-ui/layout';
+import MenuItens from '../../components/MenuItens/MenuItens';
+
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -54,9 +56,10 @@ const ProfilePage = () => {
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
  
   return (
-    <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
+    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
+      <MenuItens/>
       <TextContainerHeader>
-        <Text fontSize="16px">Meu Perfil</Text>{' '}
+        <Text mr='10' fontSize="16px">Meu Perfil</Text>{' '}
       </TextContainerHeader>
       <Perfil>
         <PessoaPerfil>

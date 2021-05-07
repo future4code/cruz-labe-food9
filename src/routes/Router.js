@@ -8,6 +8,12 @@ import RestaurantDetailPage from '../pages/RestaurantDetailPage/RestaurantDetail
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import AdressPage from '../pages/AdressPage/AdressPage'
 import ProfileUpdatePage from '../pages/ProfileUpdatePage/ProfileUpdatePage';
+import IndiqueUmAmigo from '../components/MenuItens/IndiqueUmAmigo';
+import Cupons from '../components/MenuItens/Cupons';
+import Pedidos from '../components/MenuItens/Pedidos';
+import Pagamento from '../components/MenuItens/Pagamento';
+import Ajuda from '../components/MenuItens/Ajuda';
+import Avaliacoes from '../components/MenuItens/Avaliacoes';
 
 const Router = () => {
   return (
@@ -35,7 +41,24 @@ const Router = () => {
         <Route exact path="/profileUpdate">
           <ProfileUpdatePage/>
         </Route>
-
+        <Route exact path="/indiqueUmAmigo">
+          <IndiqueUmAmigo/>
+        </Route>
+        <Route exact path="/cupons">
+          <Cupons/>
+        </Route>
+        <Route exact path="/pedidos">
+          <Pedidos/>
+        </Route>
+        <Route exact path="/pagamento">
+          <Pagamento/>
+        </Route>
+        <Route exact path="/help">
+          <Ajuda/>
+        </Route>
+        <Route exact path="/avaliacoes">
+          <Avaliacoes/>
+        </Route>
         <Route exact path="/restaurants/:id">
           <RestaurantDetailPage />
         </Route>

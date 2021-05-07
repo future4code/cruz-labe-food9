@@ -10,7 +10,7 @@ const LoginPage = () => {
     const history = useHistory()
 
     return (
-        <Box border='1px solid' borderColor='#C4C4C4' w="360px" minH="640px">
+        <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
             <VStack>
                 <Box>
                     <Image mb='16px' mt='88px' src={logo_future_eat} w='104px' h='58px'/>
