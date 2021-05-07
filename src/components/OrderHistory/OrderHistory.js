@@ -20,7 +20,7 @@ const OrderHistory = () => {
       );
     });
 
-  console.log(orderHist.orders);
+  
   return <div>{orderHistScreen}</div>;
 };
 export default OrderHistory;
