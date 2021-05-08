@@ -6,11 +6,17 @@ import {
   StyledHome,
   StyledProfile,
   CardInfo,
-  CardInfoPerson,
   CardInfoOrder,
   CardInfoPay,
   FormPay,
-  CartItemPrincipal
+  TextContainer,
+  TextContainerHeader,
+  Path,
+  EnderecoRest,
+  Title2,
+  EnderecoCliente,
+  TotalContainer,
+  Total
 } from './styled';
 import AppBar from '@material-ui/core/AppBar';
 import avatar from '../../assets/avatar.svg';
@@ -31,6 +37,7 @@ import { GlobalStateContext } from '../../Global/GlobalStateContext'
 import CartCard from '../../components/CartCard/CartCard'
 import axios from 'axios';
 import useForm from '../../hooks/useForm';
+
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
@@ -46,18 +53,17 @@ const CartPage = () => {
   const [restaurant, getRestaurant] = useRequestData([], `${BASE_URL}/restaurants`);
   const [value, setValue] = useState("money")
 
+
   const { states, setters, requests } = useContext(GlobalStateContext);
   const [priceToPay, setPriceToPay] = useState(0);
 
   useEffect(() => {
     let currentTotal = 0;
     states.cart.forEach((item) => {
-      currentTotal += item.price * item.amount
-    })
-    setPriceToPay(currentTotal)
-  }, [states.cart])
-
-
+      currentTotal += item.price * item.amount;
+    });
+    setPriceToPay(currentTotal);
+  }, [states.cart]);
 
   const removeItemFromCart = (itemToRemove) => {
     const index = states.cart.findIndex((i) => i.id === itemToRemove.id);
@@ -80,8 +86,8 @@ const CartPage = () => {
         removeItemFromCart={() => removeItemFromCart(item)}
         description={item.description}
       />
-    )
-  })
+    );
+  });
 
 
   const RestaurantFitler = restaurant.restaurants && restaurant.restaurants.filter((rest) => {
@@ -92,19 +98,19 @@ const CartPage = () => {
 
 
 
+
   const cartItens = () => {
     return (
-      <CartItemPrincipal>
-        <div>
-          <p>Loja: {RestaurantFitler && RestaurantFitler[0].name}</p>
-          <p>Endereço: {RestaurantFitler && RestaurantFitler[0].address}</p>
-          <p>Tempo entrega: {(RestaurantFitler && RestaurantFitler[0].deliveryTime)}-{(RestaurantFitler && RestaurantFitler[0].deliveryTime) + 15}min</p>
-        </div>
-      </CartItemPrincipal>
-    )
-  }
-
-
+      <EnderecoRest>
+        <p>{RestaurantFitler && RestaurantFitler[0].name}</p>
+        <Title2>{RestaurantFitler && RestaurantFitler[0].address}</Title2>
+        <Title2>
+          {RestaurantFitler && RestaurantFitler[0].deliveryTime}-
+          {(RestaurantFitler && RestaurantFitler[0].deliveryTime) + 15}min
+        </Title2>
+      </EnderecoRest>
+    );
+  };
 
   const placeOrder = async () => {
 
@@ -128,8 +134,6 @@ const CartPage = () => {
     }
   }
 
-
-
   function RadioExample() {
     return (
       <RadioGroup onChange={setValue} value={value}>
@@ -146,9 +150,15 @@ const CartPage = () => {
   }
 
   return (
-
-    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
-      <p>Meu Carrinho </p>
+    <Box border="1px solid" borderColor="#C4C4C4" minW="360px" minH="640px">
+      <TextContainerHeader>
+        <p>Meu Carrinho </p>
+      </TextContainerHeader>
+      <EnderecoCliente>
+        <Title2>Endereço de entrega</Title2>
+        {profile.user && profile.user.address}
+      </EnderecoCliente>
+      {cartItens()}
       <CardInfo>
         <CardInfoPerson>
           <h2>Endereço de entrega</h2>
@@ -157,13 +167,44 @@ const CartPage = () => {
         <div>
           {RestaurantFitler && states.cart && states.cart.length > 0 ? cartItens() : <p></p>}
         </div>
+
         <CardInfoOrder>
-          {states.cart && states.cart.length > 0 ? produtList : <p>Carrinho vazio</p>}
+          {states.cart && states.cart.length > 0 ? (
+            produtList
+          ) : (
+            <TextContainerHeader>Carrinho vazio</TextContainerHeader>
+          )}
         </CardInfoOrder>
-        <div>
-          <h1>Total: R${priceToPay.toFixed(2)}</h1>
-        </div>
+        <TotalContainer>
+          <p>FRETE</p>
+          <Total>R${RestaurantFitler && RestaurantFitler[0].shipping},00</Total>
+        </TotalContainer>
+        <TotalContainer>
+          <p>SUBTOTAL</p>
+          <Total>R${priceToPay.toFixed(2)}</Total>
+        </TotalContainer>
         <CardInfoPay>
+          <TextContainer>Forma de Pagamento</TextContainer>
+          <Path />
+          <FormPay>
+            <TextContainer>
+              <input type={'radio'} id="male" name="gender" value="male" />
+              <label>Dinheiro</label>
+            </TextContainer>
+            <TextContainer>
+              <input type={'radio'} id="female" name="gender" value="male" />
+              <label>Cartão de crédito</label>
+            </TextContainer>
+            <Button
+              type="submit"
+              _hover={{ bg: 'brand.100' }}
+              mt="22px"
+              w="328px"
+              bg="brand.100"
+            >
+              Enviar
+            </Button>
+          </FormPay>
           <p>Forma de Pagamento</p>
           {RadioExample()}
         </CardInfoPay>

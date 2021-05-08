@@ -9,6 +9,7 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 export const TitleContainer = styled.div`
@@ -68,3 +69,26 @@ export const Path = styled.div`
   border: 1px solid black;
   margin-bottom: 10px;
 `;
+
+export const Button = styled.button`
+  border: 1px solid black; 
+  border-color: #5cb646;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 12px;
+  padding: 5px 20px;
+  margin: 88px 0 -2px 233px;
+  position: absolute;
+`
+
+export const ButtonRed = styled.button`
+  border: 1px solid black; 
+  border-color: red;
+  color: red;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 12px;
+  padding: 5px 20px;
+  margin: 88px 0 -2px 233px;
+  position: absolute;
+`

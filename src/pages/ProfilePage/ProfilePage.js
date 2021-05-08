@@ -16,7 +16,8 @@ import {
   TextContainerHeader,
   Title2,
   TextContainer,
-  Path
+  Path,
+  StyledMenu
 } from './styled';
 import AppBar from '@material-ui/core/AppBar';
 import avatar from '../../assets/avatar.svg';
@@ -41,7 +42,6 @@ import OrderHistory from '../../components/OrderHistory/OrderHistory';
 import { Box } from '@chakra-ui/layout';
 import MenuItens from '../../components/MenuItens/MenuItens';
 
-
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
@@ -54,12 +54,16 @@ const ProfilePage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
- 
+
   return (
-    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
-      <MenuItens/>
+    <Box border="1px solid" borderColor="#C4C4C4" minW="360px" minH="640px">
       <TextContainerHeader>
-        <Text mr='10' fontSize="16px">Meu Perfil</Text>{' '}
+        <StyledMenu>
+        <MenuItens />
+        </StyledMenu>
+        <Text mr="10" fontSize="16px">
+          Meu Perfil
+        </Text>{' '}
       </TextContainerHeader>
       <Perfil>
         <PessoaPerfil>
@@ -84,9 +88,9 @@ const ProfilePage = () => {
         <TextContainer>
           <p>Historico de pedidos</p>
         </TextContainer>
-        <Path/>
+        <Path />
         <HistoricoPerfil>
-          <OrderHistory/>
+          <OrderHistory />
         </HistoricoPerfil>
       </Perfil>
       <AppBar position="fixed" color="inherit" className={classes.appBar}>
