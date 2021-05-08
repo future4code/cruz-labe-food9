@@ -1,6 +1,7 @@
 import React from 'react'
-import { HamburgerIcon,
-    QuestionOutlineIcon, 
+import { AddIcon, EditIcon, ExternalLinkIcon, HamburgerIcon,
+    QuestionOutlineIcon,
+    RepeatIcon, 
     } from '@chakra-ui/icons'
 import {
     Menu,
@@ -8,7 +9,8 @@ import {
     MenuList,
     MenuItem,
     MenuGroup,
-    MenuDivider
+    MenuDivider,
+    Link
     } from "@chakra-ui/react"
 import { CgLogOut } from 'react-icons/cg'
 import { GiThreeFriends } from 'react-icons/gi'
@@ -16,6 +18,7 @@ import { IoTicketSharp } from 'react-icons/io5'
 import { ImSpoonKnife } from 'react-icons/im'
 import { IoWalletOutline } from 'react-icons/io5'
 import { RiStarSmileLine } from "react-icons/ri"
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
 import { useToast } from "@chakra-ui/react"
 import { IconButton, useColorMode } from '@chakra-ui/react';
@@ -67,6 +70,74 @@ const MenuItens = () => {
                     }}
                 />
                     <MenuList>
+                        <MenuGroup title='Siga-nos nas redes sociais!'>
+                    <Menu>
+                        <MenuButton
+                            as={IconButton}
+                            aria-label="Options"
+                            ml='8%' mr='15%' colorScheme="facebook" icon={<FaFacebook />}
+                        />
+                        <MenuList>
+                            <MenuItem _hover={{bg:'brand.100'}} as={Link} href='https://www.facebook.com/matheus.borges.75457081' icon={<FaFacebook />} command="⌘">
+                            Matheus Borges
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} as={Link} href='https://www.facebook.com/gabriel.mina1/' icon={<FaFacebook />} command="⌘">
+                            Gabriel Mina
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} icon={<FaFacebook />} command="⌘">
+                            New Tab
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} icon={<FaFacebook />} command="⌘">
+                            New Tab
+                            </MenuItem>
+                        </MenuList>
+                        </Menu>
+                    <Menu>
+                        <MenuButton
+                            as={IconButton}
+                            aria-label="Options"
+                            mr='15%' colorScheme="telegram" icon={<FaLinkedin />}
+                        />
+                        <MenuList>
+                            <MenuItem _hover={{bg:'brand.100'}} as={Link} href='https://www.linkedin.com/in/matheus-borges-94a6571bb/' icon={<FaLinkedin />} command="⌘">
+                            Matheus Borges
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} as={Link} href='https://www.linkedin.com/in/gabriel-mina-115511153/' icon={<FaLinkedin />} command="⌘">
+                            Gabriel Mina
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} icon={<FaLinkedin />} command="⌘">
+                            New Tab
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} icon={<FaLinkedin />} command="⌘">
+                            New Tab
+                            </MenuItem>
+                        </MenuList>
+                        </Menu>
+                    <Menu>
+                        <MenuButton
+                            as={IconButton}
+                            aria-label="Options"
+                            bg='radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)' 
+                            icon={<FaInstagram color='white' />} 
+                            _hover={{bg:'radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)'}}
+                            _active={{bg:'radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)'}}
+                        />
+                        <MenuList>
+                        <MenuItem _hover={{bg:'brand.100'}} as={Link} href="https://www.instagram.com/theush7x5/" icon={<FaInstagram />} command="⌘">
+                            TheusH7X5
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} as={Link} href='https://www.instagram.com/_gabrielmina/' icon={<FaInstagram />} command="⌘">
+                            _gabrielmina
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} icon={<FaInstagram />} command="⌘">
+                            New Tab
+                            </MenuItem>
+                            <MenuItem _hover={{bg:'brand.100'}} icon={<FaInstagram />} command="⌘">
+                            New Tab
+                            </MenuItem>
+                        </MenuList>
+                        </Menu>
+                        </MenuGroup>
                         <MenuGroup title="Configuração">
                             <MenuItem  _hover={{ bg: "brand.100" }} 
                             onClick={() => goToIndiqueUmAmigoPage(history)} 
