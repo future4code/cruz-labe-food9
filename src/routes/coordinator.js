@@ -8,6 +8,9 @@ export const goToSignUpPage = (history) => {
 export const goToAdressPage = (history) => {
     history.push("/adress")
 }
+export const goToAdressPageLogin = (history) => {
+    history.push("/adressLogin")
+}
 
 export const goToHomePage = (history) => {
     history.push("/home")
