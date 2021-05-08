@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
-import { goToAdressPage } from "../../routes/coordinator";
+import {  goToAdressPageLogin } from "../../routes/coordinator";
 
 
 export const signUp = (body, clear, toast, history, confirm, setConfirm) => {
@@ -21,7 +21,7 @@ export const signUp = (body, clear, toast, history, confirm, setConfirm) => {
         });
         clear()
         setConfirm('')
-        goToAdressPage(history);
+        goToAdressPageLogin(history);
       } else {
         toast({
           title: `Erro ao confirmar senha`,

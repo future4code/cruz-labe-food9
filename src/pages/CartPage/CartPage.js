@@ -121,8 +121,8 @@ const CartPage = () => {
         }
       })
       console.log(response.data);
+      alert("Pedido enviado com sucesso")
       setters.setCart([])
-
     } catch (erro) {
       console.log("Erro", erro);
     }

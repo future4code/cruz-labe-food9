@@ -14,6 +14,7 @@ import Pedidos from '../components/MenuItens/Pedidos';
 import Pagamento from '../components/MenuItens/Pagamento';
 import Ajuda from '../components/MenuItens/Ajuda';
 import Avaliacoes from '../components/MenuItens/Avaliacoes';
+import AdressPageLogin from '../pages/AdressPageLogin/AdressPageLogin';
 
 const Router = () => {
   return (
@@ -27,6 +28,9 @@ const Router = () => {
         </Route>
         <Route exact path="/adress">
           <AdressPage />
+        </Route>
+        <Route exact path="/adressLogin">
+          <AdressPageLogin />
         </Route>
         <Route exact path="/home">
           <HomePage />
