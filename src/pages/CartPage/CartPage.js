@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Radio, RadioGroup } from "@chakra-ui/react"
 import {
   StyledToolBar,
   StyledCart,
@@ -31,9 +32,12 @@ import {
 import { Box } from '@chakra-ui/layout';
 import useRequestData from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/urls';
-import { Button } from '@chakra-ui/react';
-import { GlobalStateContext } from '../../Global/GlobalStateContext';
-import CartCard from '../../components/CartCard/CartCard';
+import { Button } from '@chakra-ui/react'
+import { GlobalStateContext } from '../../Global/GlobalStateContext'
+import CartCard from '../../components/CartCard/CartCard'
+import axios from 'axios';
+import useForm from '../../hooks/useForm';
+
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
@@ -46,10 +50,9 @@ const CartPage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
-  const [restaurant, getRestaurant] = useRequestData(
-    [],
-    `${BASE_URL}/restaurants`
-  );
+  const [restaurant, getRestaurant] = useRequestData([], `${BASE_URL}/restaurants`);
+  const [value, setValue] = useState("money")
+
 
   const { states, setters, requests } = useContext(GlobalStateContext);
   const [priceToPay, setPriceToPay] = useState(0);
@@ -86,15 +89,15 @@ const CartPage = () => {
     );
   });
 
-  const RestaurantFitler =
-    restaurant.restaurants &&
-    restaurant.restaurants.filter((rest) => {
-      if (rest.id === states.id) {
-        return true;
-      }
-    });
 
-  console.log(RestaurantFitler);
+  const RestaurantFitler = restaurant.restaurants && restaurant.restaurants.filter((rest) => {
+    if (rest.id === states.id) {
+      return true;
+    }
+  })
+
+
+
 
   const cartItens = () => {
     return (
@@ -109,7 +112,43 @@ const CartPage = () => {
     );
   };
 
-  console.log('id', states.id);
+  const placeOrder = async () => {
+
+    const body = {
+      "products": [{"id":states.cart[0].id,"quantity":states.cart[0].amount}],
+      "paymentMethod": value
+
+    }
+    console.log(body);
+    try {
+      const response = await axios.post(`${BASE_URL}/restaurants/${states.id}/order`, body, {
+        headers: {
+          auth: localStorage.getItem("token")
+        }
+      })
+      console.log(response.data);
+      alert("Pedido enviado com sucesso")
+      setters.setCart([])
+    } catch (erro) {
+      console.log("Erro", erro);
+    }
+  }
+
+  function RadioExample() {
+    return (
+      <RadioGroup onChange={setValue} value={value}>
+        <Radio value="money">Dinheiro</Radio>
+        <Radio value="creditcard">cartão de crédito</Radio>
+        <Button
+          type='submit'
+          onClick={placeOrder}
+          _hover={{ bg: "brand.100" }}
+          mt='22px' w='328px'
+          bg='brand.100'>Enviar</Button>
+      </RadioGroup>
+    )
+  }
+
   return (
     <Box border="1px solid" borderColor="#C4C4C4" minW="360px" minH="640px">
       <TextContainerHeader>
@@ -121,6 +160,14 @@ const CartPage = () => {
       </EnderecoCliente>
       {cartItens()}
       <CardInfo>
+        <CardInfoPerson>
+          <h2>Endereço de entrega</h2>
+          <p>{profile.user && profile.user.address}</p>
+        </CardInfoPerson>
+        <div>
+          {RestaurantFitler && states.cart && states.cart.length > 0 ? cartItens() : <p></p>}
+        </div>
+
         <CardInfoOrder>
           {states.cart && states.cart.length > 0 ? (
             produtList
@@ -158,6 +205,8 @@ const CartPage = () => {
               Enviar
             </Button>
           </FormPay>
+          <p>Forma de Pagamento</p>
+          {RadioExample()}
         </CardInfoPay>
       </CardInfo>
 
