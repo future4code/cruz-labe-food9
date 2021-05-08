@@ -68,3 +68,15 @@ export const Path = styled.div`
   border: 1px solid black;
   margin-bottom: 10px;
 `;
+
+export const ButtonRed = styled.button`
+  border: 1px solid black; 
+  border-color: red;
+  color: red;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 12px;
+  padding: 5px 20px;
+  margin: -62px -3px 0 233px;
+  position: absolute;
+`

@@ -5,11 +5,17 @@ import {
   StyledHome,
   StyledProfile,
   CardInfo,
-  CardInfoPerson,
   CardInfoOrder,
   CardInfoPay,
   FormPay,
-  CartItemPrincipal
+  TextContainer,
+  TextContainerHeader,
+  Path,
+  EnderecoRest,
+  Title2,
+  EnderecoCliente,
+  TotalContainer,
+  Total
 } from './styled';
 import AppBar from '@material-ui/core/AppBar';
 import avatar from '../../assets/avatar.svg';
@@ -25,9 +31,9 @@ import {
 import { Box } from '@chakra-ui/layout';
 import useRequestData from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/urls';
-import { Button } from '@chakra-ui/react'
-import { GlobalStateContext } from '../../Global/GlobalStateContext'
-import CartCard from '../../components/CartCard/CartCard'
+import { Button } from '@chakra-ui/react';
+import { GlobalStateContext } from '../../Global/GlobalStateContext';
+import CartCard from '../../components/CartCard/CartCard';
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
@@ -40,7 +46,10 @@ const CartPage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
-  const [restaurant, getRestaurant] = useRequestData([], `${BASE_URL}/restaurants`);
+  const [restaurant, getRestaurant] = useRequestData(
+    [],
+    `${BASE_URL}/restaurants`
+  );
 
   const { states, setters, requests } = useContext(GlobalStateContext);
   const [priceToPay, setPriceToPay] = useState(0);
@@ -48,12 +57,10 @@ const CartPage = () => {
   useEffect(() => {
     let currentTotal = 0;
     states.cart.forEach((item) => {
-      currentTotal += item.price * item.amount
-    })
-    setPriceToPay(currentTotal)
-  }, [states.cart])
-
-
+      currentTotal += item.price * item.amount;
+    });
+    setPriceToPay(currentTotal);
+  }, [states.cart]);
 
   const removeItemFromCart = (itemToRemove) => {
     const index = states.cart.findIndex((i) => i.id === itemToRemove.id);
@@ -76,65 +83,80 @@ const CartPage = () => {
         removeItemFromCart={() => removeItemFromCart(item)}
         description={item.description}
       />
-    )
-  })
+    );
+  });
 
-
-  const RestaurantFitler = restaurant.restaurants && restaurant.restaurants.filter((rest) => {
-    if(rest.id === states.id){
-      return true;
-    }
-  })
+  const RestaurantFitler =
+    restaurant.restaurants &&
+    restaurant.restaurants.filter((rest) => {
+      if (rest.id === states.id) {
+        return true;
+      }
+    });
 
   console.log(RestaurantFitler);
 
   const cartItens = () => {
     return (
-      <CartItemPrincipal>
-        <div>
-          <p>Loja: {RestaurantFitler && RestaurantFitler[0].name}</p>
-          <p>Endereço: {RestaurantFitler  && RestaurantFitler[0].address}</p>
-          <p>Tempo entrega: {(RestaurantFitler && RestaurantFitler[0].deliveryTime)}-{(RestaurantFitler && RestaurantFitler[0].deliveryTime)+15}min</p>
-          </div>
-      </CartItemPrincipal>
-    )
-  }
+      <EnderecoRest>
+        <p>{RestaurantFitler && RestaurantFitler[0].name}</p>
+        <Title2>{RestaurantFitler && RestaurantFitler[0].address}</Title2>
+        <Title2>
+          {RestaurantFitler && RestaurantFitler[0].deliveryTime}-
+          {(RestaurantFitler && RestaurantFitler[0].deliveryTime) + 15}min
+        </Title2>
+      </EnderecoRest>
+    );
+  };
 
-  console.log("id",states.id);
+  console.log('id', states.id);
   return (
-
-    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
-      <p>Meu Carrinho </p>
+    <Box border="1px solid" borderColor="#C4C4C4" minW="360px" minH="640px">
+      <TextContainerHeader>
+        <p>Meu Carrinho </p>
+      </TextContainerHeader>
+      <EnderecoCliente>
+        <Title2>Endereço de entrega</Title2>
+        {profile.user && profile.user.address}
+      </EnderecoCliente>
+      {cartItens()}
       <CardInfo>
-        <CardInfoPerson>
-          <h2>Endereço de entrega</h2>
-          <p>{profile.user && profile.user.address}</p>
-        </CardInfoPerson>
-        <div>
-          {cartItens()}
-        </div>
         <CardInfoOrder>
-          {states.cart && states.cart.length > 0 ? produtList : <p>Carrinho vazio</p>}
+          {states.cart && states.cart.length > 0 ? (
+            produtList
+          ) : (
+            <TextContainerHeader>Carrinho vazio</TextContainerHeader>
+          )}
         </CardInfoOrder>
-        <div>
-          <h1>Total: R${priceToPay.toFixed(2)}</h1>
-        </div>
+        <TotalContainer>
+          <p>FRETE</p>
+          <Total>R${RestaurantFitler && RestaurantFitler[0].shipping},00</Total>
+        </TotalContainer>
+        <TotalContainer>
+          <p>SUBTOTAL</p>
+          <Total>R${priceToPay.toFixed(2)}</Total>
+        </TotalContainer>
         <CardInfoPay>
-          <p>Forma de Pagamento</p>
+          <TextContainer>Forma de Pagamento</TextContainer>
+          <Path />
           <FormPay>
-            <div>
-              <input type={"radio"} id="male" name="gender" value="male" />
+            <TextContainer>
+              <input type={'radio'} id="male" name="gender" value="male" />
               <label>Dinheiro</label>
-            </div>
-            <div>
-              <input type={"radio"} id="female" name="gender" value="male" />
+            </TextContainer>
+            <TextContainer>
+              <input type={'radio'} id="female" name="gender" value="male" />
               <label>Cartão de crédito</label>
-            </div>
+            </TextContainer>
             <Button
-              type='submit'
-              _hover={{ bg: "brand.100" }}
-              mt='22px' w='328px'
-              bg='brand.100'>Enviar</Button>
+              type="submit"
+              _hover={{ bg: 'brand.100' }}
+              mt="22px"
+              w="328px"
+              bg="brand.100"
+            >
+              Enviar
+            </Button>
           </FormPay>
         </CardInfoPay>
       </CardInfo>

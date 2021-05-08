@@ -3,8 +3,7 @@ import React from 'react';
 import {
   StyledImg,
   StyledName,
-  Path,
-  StyledTitle,
+  ButtonRed,
   Container,
   StyledDescription,
   StyledPrice,
@@ -23,7 +22,7 @@ const CartCard = (props) => {
         <StyledPrice> R${props.price},00 <b>x{props.amount}</b></StyledPrice>
       </Container>
       <Center>
-        <button onClick={props.removeItemFromCart}>removerQuantidade</button>
+        <ButtonRed onClick={props.removeItemFromCart}>Remover</ButtonRed>
       </Center>
     </div>
   );

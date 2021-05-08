@@ -1,4 +1,3 @@
-import { Center } from '@chakra-ui/layout';
 import React from 'react';
 import {
   StyledImg,
@@ -8,7 +7,8 @@ import {
   Container,
   StyledDescription,
   StyledPrice,
-  TitleContainer
+  TitleContainer,
+  Button
 } from './styles';
 
 const RestaurantDetailsCard = (props) => {
@@ -23,10 +23,8 @@ const RestaurantDetailsCard = (props) => {
         </TitleContainer>
         <StyledDescription>{props.description}</StyledDescription>
         <StyledPrice>R${props.price}</StyledPrice>
+        <Button onClick={props.addItemToCart}>Adicionar</Button>
       </Container>
-      <Center>
-        <button onClick={props.addItemToCart}>Adicionar</button>
-      </Center>
     </div>
   );
 };
