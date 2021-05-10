@@ -9,7 +9,8 @@ import {
   Container,
   StyledDescription,
   StyledPrice,
-  TitleContainer
+  TitleContainer,
+  Button
 } from './styles';
 
 const RestaurantDetailsCard = (props) => {

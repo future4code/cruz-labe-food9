@@ -6,11 +6,17 @@ import {
   StyledHome,
   StyledProfile,
   CardInfo,
-  CardInfoPerson,
   CardInfoOrder,
   CardInfoPay,
   FormPay,
-  CartItemPrincipal
+  TextContainer,
+  TextContainerHeader,
+  Path,
+  EnderecoRest,
+  Title2,
+  EnderecoCliente,
+  TotalContainer,
+  Total
 } from './styled';
 import AppBar from '@material-ui/core/AppBar';
 import avatar from '../../assets/avatar.svg';
@@ -26,11 +32,12 @@ import {
 import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/layout';
 import useRequestData from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/urls';
-import { Button } from '@chakra-ui/react'
-import { GlobalStateContext } from '../../Global/GlobalStateContext'
-import CartCard from '../../components/CartCard/CartCard'
+import { Button } from '@chakra-ui/react';
+import { GlobalStateContext } from '../../Global/GlobalStateContext';
+import CartCard from '../../components/CartCard/CartCard';
 import axios from 'axios';
 import useForm from '../../hooks/useForm';
+
 const useStyles = makeStyles(() => ({
   appBar: {
     top: 'auto',
@@ -43,8 +50,11 @@ const CartPage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
-  const [restaurant, getRestaurant] = useRequestData([], `${BASE_URL}/restaurants`);
-  const [value, setValue] = useState("money")
+  const [restaurant, getRestaurant] = useRequestData(
+    [],
+    `${BASE_URL}/restaurants`
+  );
+  const [value, setValue] = useState('money');
 
   const { states, setters, requests } = useContext(GlobalStateContext);
   const [priceToPay, setPriceToPay] = useState(0);
@@ -52,12 +62,10 @@ const CartPage = () => {
   useEffect(() => {
     let currentTotal = 0;
     states.cart.forEach((item) => {
-      currentTotal += item.price * item.amount
-    })
-    setPriceToPay(currentTotal)
-  }, [states.cart])
-
-
+      currentTotal += item.price * item.amount;
+    });
+    setPriceToPay(currentTotal);
+  }, [states.cart]);
 
   const removeItemFromCart = (itemToRemove) => {
     const index = states.cart.findIndex((i) => i.id === itemToRemove.id);
@@ -80,17 +88,16 @@ const CartPage = () => {
         removeItemFromCart={() => removeItemFromCart(item)}
         description={item.description}
       />
-    )
-  })
+    );
+  });
 
-
-  const RestaurantFitler = restaurant.restaurants && restaurant.restaurants.filter((rest) => {
-    if (rest.id === states.id) {
-      return true;
-    }
-  })
-
-
+  const RestaurantFitler =
+    restaurant.restaurants &&
+    restaurant.restaurants.filter((rest) => {
+      if (rest.id === states.id) {
+        return true;
+      }
+    });
 
   const cartItens = () => {
     return (
@@ -104,31 +111,29 @@ const CartPage = () => {
     )
   }
 
-
-
   const placeOrder = async () => {
-
     const body = {
-      "products": [{"id":states.cart[0].id,"quantity":states.cart[0].amount}],
-      "paymentMethod": value
-
-    }
+      products: [{ id: states.cart[0].id, quantity: states.cart[0].amount }],
+      paymentMethod: value
+    };
     console.log(body);
     try {
-      const response = await axios.post(`${BASE_URL}/restaurants/${states.id}/order`, body, {
-        headers: {
-          auth: localStorage.getItem("token")
+      const response = await axios.post(
+        `${BASE_URL}/restaurants/${states.id}/order`,
+        body,
+        {
+          headers: {
+            auth: localStorage.getItem('token')
+          }
         }
-      })
+      );
       console.log(response.data);
-      alert("Pedido enviado com sucesso")
-      setters.setCart([])
+      alert('Pedido enviado com sucesso');
+      setters.setCart([]);
     } catch (erro) {
-      console.log("Erro", erro);
+      console.log('Erro', erro);
     }
-  }
-
-
+  };
 
   function RadioExample() {
     return (
@@ -146,11 +151,10 @@ const CartPage = () => {
             bg='brand.100'>Enviar</Button>
         </Center>
       </RadioGroup>
-    )
+    );
   }
 
   return (
-
     <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
       <Center p={2}>
         <Text><b>Meu Carrinho</b></Text>

@@ -7,6 +7,10 @@ export const Title = styled.p`
   font-size: 2em;
 `;
 
+export const StyledMenu = styled.div`
+  margin-right: 90px;
+`;
+
 export const Title2 = styled.p`
   color: #b8b8b8;
 `;
@@ -21,10 +25,12 @@ export const PessoaPerfil = styled.div`
   flex: 0.1;
   justify-content: space-between;
 `;
+
 export const EnderecoPerfil = styled.div`
   display: flex;
   flex: 0.2;
 `;
+
 export const HistoricoPerfil = styled.div`
   display: flex;
   flex: 2;
@@ -32,6 +38,7 @@ export const HistoricoPerfil = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+
 export const PessoaPerfilInfo = styled.div`
   display: flex;
   flex: 1;
@@ -41,10 +48,12 @@ export const PessoaPerfilInfo = styled.div`
   font-weight: 500;
   font-size: 15px;
 `;
+
 export const PessoaPerfilEditar = styled.div`
   display: flex;
   align-items: center;
 `;
+
 export const EnderecoPerfilInfo = styled.div`
   display: flex;
   flex: 1;
@@ -54,6 +63,7 @@ export const EnderecoPerfilInfo = styled.div`
   font-weight: 500;
   font-size: 15px;
 `;
+
 export const EnderecoPerfilEditar = styled.div`
   display: flex;
   align-items: center;
@@ -93,7 +103,6 @@ export const StyledHome = styled.img`
 export const TextContainerHeader = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   text-align: center;
   align-items: center;
   color: black;
@@ -122,4 +131,4 @@ export const Path = styled.div`
   margin-left: 10px;
   margin-right: 15px;
   border: 1px solid black;
-`
+`;

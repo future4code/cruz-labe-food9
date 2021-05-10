@@ -5,8 +5,7 @@ import React from 'react';
 import {
   StyledImg,
   StyledName,
-  Path,
-  StyledTitle,
+  ButtonRed,
   Container,
   StyledDescription,
   StyledPrice,
