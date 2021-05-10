@@ -2,9 +2,12 @@ import React from 'react';
 import { Container, StyledImg, TextContainer, StyledP } from './styles';
 import { goToRestaurantDetailPage } from '../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
+import { Text } from '@chakra-ui/layout';
+
 
 const RestaurantCard = (props) => {
   const history = useHistory();
+
 
   return (
     <Container
@@ -15,10 +18,10 @@ const RestaurantCard = (props) => {
         <StyledP>{props.name}</StyledP>
       </TextContainer>
       <TextContainer>
-        <p>
+        <Text>
           {props.deliveryTime - 10}-{props.deliveryTime} min
-        </p>
-        <p>Frete R${props.shipping},00</p>
+        </Text>
+        <Text>Frete R${props.shipping},00</Text>
       </TextContainer>
     </Container>
   );

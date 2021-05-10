@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, StyledImg, TextContainer, StyledP } from './styles';
 import { goToRestaurantDetailPage } from '../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
+import { Text } from '@chakra-ui/layout';
 
 const RestaurantCardFilter = (props) => {
   const history = useHistory();
@@ -15,10 +16,10 @@ const RestaurantCardFilter = (props) => {
         <StyledP>{props.name}</StyledP>
       </TextContainer>
       <TextContainer>
-        <p>
+        <Text>
           {props.deliveryTime - 10}-{props.deliveryTime}
-        </p>
-        <p>Frete R${props.shipping},00</p>
+        </Text>
+        <Text>Frete R${props.shipping},00</Text>
       </TextContainer>
     </Container>
   );

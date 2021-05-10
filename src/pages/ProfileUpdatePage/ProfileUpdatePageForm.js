@@ -6,8 +6,11 @@ import { BASE_URL } from '../../constants/urls'
 import useRequestData from '../../hooks/useRequestData'
 import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useToast } from '@chakra-ui/toast';
+
 
 const ProfileUpdatePageForm = () => {
+    const toast = useToast()
 
     const history = useHistory();
     const [perfil, getPerfil] = useRequestData({}, `${BASE_URL}/profile`)
@@ -21,10 +24,25 @@ const ProfileUpdatePageForm = () => {
                 }
             });
             localStorage.getItem("token", response.data.token);
-            alert("Alterado com sucesso");
+            toast({
+                title: `Alterado com sucesso!`,
+                variant: "left-accent",
+                status: "success",
+                duration: 2000,
+                position: "bottom-right",
+                isClosable: true,
+              });
             history.push("/home")
-        } catch (erro) {
-            console.log("Erro", erro);
+        } catch (err) {
+            toast({
+                title: `Erro ao alterar!`,
+                description: `${err.response.data.message}!`,
+                duration: 1000,
+                status: "error",
+                variant: "left-accent",
+                position: "bottom-left",
+                isClosable: true,
+            });
         }
     }
 

@@ -16,7 +16,9 @@ import {
   Title2,
   EnderecoCliente,
   TotalContainer,
-  Total
+  Total,
+  CartItemPrincipal,
+  CardInfoPerson
 } from './styled';
 import AppBar from '@material-ui/core/AppBar';
 import avatar from '../../assets/avatar.svg';
@@ -37,6 +39,8 @@ import { GlobalStateContext } from '../../Global/GlobalStateContext';
 import CartCard from '../../components/CartCard/CartCard';
 import axios from 'axios';
 import useForm from '../../hooks/useForm';
+import { useToast } from '@chakra-ui/toast';
+
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -47,6 +51,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CartPage = () => {
+  const toast = useToast()
+
   const classes = useStyles();
   const history = useHistory();
   const [profile, getProfile] = useRequestData({}, `${BASE_URL}/profile`);
@@ -127,11 +133,25 @@ const CartPage = () => {
           }
         }
       );
-      console.log(response.data);
-      alert('Pedido enviado com sucesso');
+      toast({
+        title: `Pedido enviado com sucesso!`,
+        variant: "left-accent",
+        status: "success",
+        duration: 2000,
+        position: "bottom-right",
+        isClosable: true,
+      });
       setters.setCart([]);
-    } catch (erro) {
-      console.log('Erro', erro);
+    } catch (err) {
+      toast({
+        title: `Erro ao enviar pedido!`,
+        description: `${err.response.data.message}!`,
+        duration: 1000,
+        status: "error",
+        variant: "left-accent",
+        position: "bottom-left",
+        isClosable: true,
+    });
     }
   };
 
