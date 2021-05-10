@@ -1,4 +1,6 @@
-import { Center } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/button';
+import { Box, Center } from '@chakra-ui/layout';
+import { Flex, Spacer } from "@chakra-ui/react"
 import React from 'react';
 import {
   StyledImg,
@@ -13,19 +15,17 @@ import {
 
 const CartCard = (props) => {
   return (
-    <div>
-      <Container>
-        <StyledImg src={props.photoUrl} />
-        <TitleContainer>
-          <StyledName>{props.name}</StyledName>
-        </TitleContainer>
-        <StyledDescription>{props.description}</StyledDescription>
-        <StyledPrice> R${props.price},00 <b>x{props.amount}</b></StyledPrice>
-      </Container>
-      <Center>
-        <button onClick={props.removeItemFromCart}>removerQuantidade</button>
-      </Center>
-    </div>
+    <Box>
+        <Container>
+          <StyledImg src={props.photoUrl} />
+          <TitleContainer>
+            <StyledName>{props.name}</StyledName>
+          </TitleContainer>
+          <StyledDescription>{props.description}</StyledDescription>
+          <StyledPrice> R${props.price},00 <b>x{props.amount}</b></StyledPrice>
+          <Button w='25%' mt='90px' ml='-100px' bg='white' onClick={props.removeItemFromCart}>Remover</Button>
+        </Container>
+    </Box>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Radio, RadioGroup } from "@chakra-ui/react"
+import { Radio, RadioGroup, Center } from "@chakra-ui/react"
 import {
   StyledToolBar,
   StyledCart,
@@ -23,7 +23,7 @@ import {
   goToCartPage,
   goToProfilePage
 } from '../../routes/coordinator';
-import { Box } from '@chakra-ui/layout';
+import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/layout';
 import useRequestData from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/urls';
 import { Button } from '@chakra-ui/react'
@@ -95,11 +95,11 @@ const CartPage = () => {
   const cartItens = () => {
     return (
       <CartItemPrincipal>
-        <div>
-          <p>Loja: {RestaurantFitler && RestaurantFitler[0].name}</p>
-          <p>Endereço: {RestaurantFitler && RestaurantFitler[0].address}</p>
-          <p>Tempo entrega: {(RestaurantFitler && RestaurantFitler[0].deliveryTime)}-{(RestaurantFitler && RestaurantFitler[0].deliveryTime) + 15}min</p>
-        </div>
+        <Box mt='10px'>
+          <Text color='brand.100'><b>{RestaurantFitler && RestaurantFitler[0].name}</b></Text>
+          <Text color='#b8b8b8'>{RestaurantFitler && RestaurantFitler[0].address}</Text>
+          <Text color='#b8b8b8'>{(RestaurantFitler && RestaurantFitler[0].deliveryTime)}-{(RestaurantFitler && RestaurantFitler[0].deliveryTime) + 15}min</Text>
+        </Box>
       </CartItemPrincipal>
     )
   }
@@ -132,15 +132,19 @@ const CartPage = () => {
 
   function RadioExample() {
     return (
-      <RadioGroup onChange={setValue} value={value}>
-        <Radio value="money">Dinheiro</Radio>
-        <Radio value="creditcard">cartão de crédito</Radio>
-        <Button
-          type='submit'
-          onClick={placeOrder}
-          _hover={{ bg: "brand.100" }}
-          mt='22px' w='328px'
-          bg='brand.100'>Enviar</Button>
+      <RadioGroup mt='15px' onChange={setValue} value={value}>
+        <Stack>
+          <Radio colorScheme="green" value="money">Dinheiro</Radio>
+          <Radio colorScheme="green" value="creditcard">cartão de crédito</Radio>
+        </Stack>
+        <Center>
+          <Button
+            type='submit'
+            onClick={placeOrder}
+            _hover={{ bg: "brand.100" }}
+            mt='22px' w='328px'
+            bg='brand.100'>Enviar</Button>
+        </Center>
       </RadioGroup>
     )
   }
@@ -148,23 +152,28 @@ const CartPage = () => {
   return (
 
     <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
-      <p>Meu Carrinho </p>
+      <Center p={2}>
+        <Text><b>Meu Carrinho</b></Text>
+      </Center>
       <CardInfo>
         <CardInfoPerson>
-          <h2>Endereço de entrega</h2>
-          <p>{profile.user && profile.user.address}</p>
+          <Text color='#b8b8b8' ml='10px' mt='10px'>Endereço de entrega</Text>
+          <Text ml='10px' mb='10px'><b>{profile.user && profile.user.address}</b></Text>
         </CardInfoPerson>
-        <div>
-          {RestaurantFitler && states.cart && states.cart.length > 0 ? cartItens() : <p></p>}
-        </div>
+        <Box>
+          {RestaurantFitler && states.cart && states.cart.length > 0 ? cartItens() : <Text></Text>}
+        </Box>
         <CardInfoOrder>
-          {states.cart && states.cart.length > 0 ? produtList : <p>Carrinho vazio</p>}
+          <Flex flexDirection='column' mt='10px'>
+            {states.cart && states.cart.length > 0 ? produtList : <Text>Carrinho vazio</Text>}
+          </Flex>
         </CardInfoOrder>
-        <div>
-          <h1>Total: R${priceToPay.toFixed(2)}</h1>
-        </div>
+        <Center w='90%' justifyContent='space-between'>
+          <Text><b>SUBTOTAL</b></Text> 
+          <Text color='brand.100'>R${priceToPay.toFixed(2)}</Text>
+        </Center>
         <CardInfoPay>
-          <p>Forma de Pagamento</p>
+          <Text><b>Forma de Pagamento</b></Text>
           {RadioExample()}
         </CardInfoPay>
       </CardInfo>

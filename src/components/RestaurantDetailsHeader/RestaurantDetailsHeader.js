@@ -1,18 +1,19 @@
+import { Box, Text } from '@chakra-ui/layout';
 import React from 'react';
 import { Container, StyledImg, TextContainer, StyledP, Path } from './styles';
 
 const RestaurantDetailsHeader = (props) => {
   return (
-    <div>
+    <Box>
       <StyledImg src={props.logoUrl} />
-      <StyledP>{props.name}</StyledP>
+      <StyledP><b>{props.name}</b></StyledP>
       <TextContainer>
-        <p>{props.category}</p>
-        <p>{props.deliveryTime-10}-{props.deliveryTime} min</p>
-        <p>Frete R${props.shipping},00</p>
-        <p>{props.address}</p>
+        <Text>{props.category}</Text>
+        <Text>{props.deliveryTime-10}-{props.deliveryTime} min</Text>
+        <Text>Frete R${props.shipping},00</Text>
+        <Text>{props.address}</Text>
       </TextContainer>
-    </div>
+    </Box>
   );
 };
 

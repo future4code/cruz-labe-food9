@@ -2,7 +2,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import styled from 'styled-components';
 
 export const CartItemPrincipal = styled.div`
-  background-color:lightpink;
   display:flex;
   flex-direction:column;
 `
@@ -16,10 +15,9 @@ export const CardInfo = styled.div`
     justify-content:space-around;
 `
 export const CardInfoPerson = styled.div`
-  background-color:lightgrey;
+  background-color:#eeeeee;
   width:100%;
   display:flex;
-  flex:0.5;
   flex-direction:column;
 `
 export const CardInfoOrder = styled.div`
