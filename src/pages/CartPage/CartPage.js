@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Radio, RadioGroup } from '@chakra-ui/react';
+import { Radio, RadioGroup, Center } from "@chakra-ui/react"
 import {
   StyledToolBar,
   StyledCart,
@@ -29,7 +29,7 @@ import {
   goToCartPage,
   goToProfilePage
 } from '../../routes/coordinator';
-import { Box } from '@chakra-ui/layout';
+import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/layout';
 import useRequestData from '../../hooks/useRequestData';
 import { BASE_URL } from '../../constants/urls';
 import { Button } from '@chakra-ui/react';
@@ -101,16 +101,15 @@ const CartPage = () => {
 
   const cartItens = () => {
     return (
-      <EnderecoRest>
-        <p>{RestaurantFitler && RestaurantFitler[0].name}</p>
-        <Title2>{RestaurantFitler && RestaurantFitler[0].address}</Title2>
-        <Title2>
-          {RestaurantFitler && RestaurantFitler[0].deliveryTime}-
-          {(RestaurantFitler && RestaurantFitler[0].deliveryTime) + 15}min
-        </Title2>
-      </EnderecoRest>
-    );
-  };
+      <CartItemPrincipal>
+        <Box mt='10px'>
+          <Text color='brand.100'><b>{RestaurantFitler && RestaurantFitler[0].name}</b></Text>
+          <Text color='#b8b8b8'>{RestaurantFitler && RestaurantFitler[0].address}</Text>
+          <Text color='#b8b8b8'>{(RestaurantFitler && RestaurantFitler[0].deliveryTime)}-{(RestaurantFitler && RestaurantFitler[0].deliveryTime) + 15}min</Text>
+        </Box>
+      </CartItemPrincipal>
+    )
+  }
 
   const placeOrder = async () => {
     const body = {
@@ -138,57 +137,48 @@ const CartPage = () => {
 
   function RadioExample() {
     return (
-      <RadioGroup onChange={setValue} value={value}>
-        <TextContainer>
-          <Radio value="money">Dinheiro</Radio>
-        </TextContainer>
-        <TextContainer>
-          <Radio value="creditcard">cartão de crédito</Radio>
-        </TextContainer>
-        <Button
-          type="submit"
-          onClick={placeOrder}
-          _hover={{ bg: 'brand.100' }}
-          mt="22px"
-          w="328px"
-          bg="brand.100"
-        >
-          Enviar
-        </Button>
+      <RadioGroup mt='15px' onChange={setValue} value={value}>
+        <Stack>
+          <Radio colorScheme="green" value="money">Dinheiro</Radio>
+          <Radio colorScheme="green" value="creditcard">cartão de crédito</Radio>
+        </Stack>
+        <Center>
+          <Button
+            type='submit'
+            onClick={placeOrder}
+            _hover={{ bg: "brand.100" }}
+            mt='22px' w='328px'
+            bg='brand.100'>Enviar</Button>
+        </Center>
       </RadioGroup>
     );
   }
 
   return (
-    <Box border="1px solid" borderColor="#C4C4C4" minW="360px" minH="640px">
-      <TextContainerHeader>
-        <p>Meu Carrinho </p>
-      </TextContainerHeader>
-      <EnderecoCliente>
-        <Title2>Endereço de entrega</Title2>
-        {profile.user && profile.user.address}
-      </EnderecoCliente>
-      {cartItens()}
+    <Box border='1px solid' borderColor='#C4C4C4' minW="360px" minH="640px">
+      <Center p={2}>
+        <Text><b>Meu Carrinho</b></Text>
+      </Center>
       <CardInfo>
+        <CardInfoPerson>
+          <Text color='#b8b8b8' ml='10px' mt='10px'>Endereço de entrega</Text>
+          <Text ml='10px' mb='10px'><b>{profile.user && profile.user.address}</b></Text>
+        </CardInfoPerson>
+        <Box>
+          {RestaurantFitler && states.cart && states.cart.length > 0 ? cartItens() : <Text></Text>}
+        </Box>
         <CardInfoOrder>
-          {states.cart && states.cart.length > 0 ? (
-            produtList
-          ) : (
-            <TextContainerHeader>Carrinho vazio</TextContainerHeader>
-          )}
+          <Flex flexDirection='column' mt='10px'>
+            {states.cart && states.cart.length > 0 ? produtList : <Text>Carrinho vazio</Text>}
+          </Flex>
         </CardInfoOrder>
-        <TotalContainer>
-          <p>FRETE</p>
-          <Total>R${RestaurantFitler && RestaurantFitler[0].shipping},00</Total>
-        </TotalContainer>
-        <TotalContainer>
-          <p>SUBTOTAL</p>
-          <Total>R${priceToPay.toFixed(2)}</Total>
-        </TotalContainer>
+        <Center w='90%' justifyContent='space-between'>
+          <Text><b>SUBTOTAL</b></Text> 
+          <Text color='brand.100'>R${priceToPay.toFixed(2)}</Text>
+        </Center>
         <CardInfoPay>
-          <TextContainer>Forma de Pagamento</TextContainer>
-          <Path />
-          <FormPay>{RadioExample()}</FormPay>
+          <Text><b>Forma de Pagamento</b></Text>
+          {RadioExample()}
         </CardInfoPay>
       </CardInfo>
 

@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/layout';
+import { Text, Box, useToast } from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import { TextContainerHeader } from './styled';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
@@ -13,6 +13,9 @@ import RestaurantDetailsHeader from '../../components/RestaurantDetailsHeader/Re
 import { GlobalStateContext } from '../../Global/GlobalStateContext';
 
 const RestaurantDetailPage = (props) => {
+
+  const toast = useToast()
+
   useProtectedPage();
   const params = useParams();
   const history = useHistory();
@@ -37,7 +40,15 @@ const RestaurantDetailPage = (props) => {
       newCart[index].amount += 1;
     }
     setters.setCart(newCart)
-    alert(`${newItem.name} foi adicionado ao seu carrinho!`)
+    toast({
+      title: `${newItem.name}`,
+      variant: "left-accent",
+      status: "success",
+      description: `Foi adicionado ao seu carrinho!`,
+      duration: 2000,
+      position: "bottom-right",
+      isClosable: true,
+    });
   }
 
   {
@@ -74,7 +85,7 @@ const RestaurantDetailPage = (props) => {
   };
 
   return (
-    <div>
+    <Box>
       <TextContainerHeader>
         <Text fontSize="16px">Restaurante</Text>
 
@@ -83,11 +94,11 @@ const RestaurantDetailPage = (props) => {
       </TextContainerHeader>
 
       {/* DIV contendo as informações do do restaurante (topo da tela) */}
-      <div>
+      <Box>
         {restaurantScreen()}
-        <div>{restaurantItems}</div>
-      </div>
-    </div>
+        <Box>{restaurantItems}</Box>
+      </Box>
+    </Box>
   );
 };
 
